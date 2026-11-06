@@ -374,7 +374,7 @@ const Header: FC<{
       >
         <PanelLeftIcon className="size-4" />
       </TooltipIconButton>
-      {activeView === "about" ? <span className="text-sm font-medium">About</span> : activeView === "projects" ? <span className="text-sm font-medium">Projects</span> : activeView === "contact" ? <span className="text-sm font-medium">Contact</span> : <ThreadTitle />}
+       {activeView === "about" ? <span className="text-sm font-medium">About</span> : activeView === "projects" ? <span className="text-sm font-medium">Projects</span> : activeView === "resume" ? <span className="text-sm font-medium">Resume</span> : activeView === "proof" ? <span className="text-sm font-medium">Proof</span> : activeView === "contact" ? <span className="text-sm font-medium">Contact</span> : activeView === "home" ? <span className="text-sm font-medium">Home</span> : <ThreadTitle />}
       <TooltipIconButton
         variant="ghost"
         size="icon"
