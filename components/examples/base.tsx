@@ -248,10 +248,7 @@ const Sidebar: FC<{
           <div className="flex flex-col gap-0.5 mb-3">
             <Button
               variant="ghost"
-              className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-transparent hover:bg-primary/15",
-                activeView === "home" && "bg-primary/10 border-primary/20",
-              )}
+              className="h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15"
               onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
               <HomeIcon className="size-3.5" />
@@ -259,10 +256,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-transparent hover:bg-primary/15",
-                activeView === "projects" && "bg-primary/10 border-primary/20",
-              )}
+              className="h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15"
               onClick={(e) => { e.stopPropagation(); onProjects(); }}
             >
               <BriefcaseIcon className="size-3.5" />
@@ -270,10 +264,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-transparent hover:bg-primary/15",
-                activeView === "resume" && "bg-primary/10 border-primary/20",
-              )}
+              className="h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15"
               onClick={(e) => { e.stopPropagation(); onResume(); }}
             >
               <FileTextIcon className="size-3.5" />
@@ -281,10 +272,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-transparent hover:bg-primary/15",
-                activeView === "proof" && "bg-primary/10 border-primary/20",
-              )}
+              className="h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15"
               onClick={(e) => { e.stopPropagation(); onProof(); }}
             >
               <ShieldCheckIcon className="size-3.5" />
@@ -292,10 +280,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-transparent hover:bg-primary/15",
-                activeView === "about" && "bg-primary/10 border-primary/20",
-              )}
+              className="h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15"
               onClick={(e) => { e.stopPropagation(); onAbout(); }}
             >
               <InfoIcon className="size-3.5" />
@@ -303,10 +288,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-transparent hover:bg-primary/15",
-                activeView === "contact" && "bg-primary/10 border-primary/20",
-              )}
+              className="h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15"
               onClick={(e) => { e.stopPropagation(); onContact(); }}
             >
               <MailIcon className="size-3.5" />
