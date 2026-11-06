@@ -246,10 +246,10 @@ const Sidebar: FC<{
           className="relative w-65 flex-1 overflow-y-auto p-3"
           onClick={onChat}
         >
-          <div className="flex flex-col gap-0.5 px-1">
+          <div className="flex flex-col gap-0.5 mb-3">
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
               <HomeIcon className="size-3.5" />
@@ -257,7 +257,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onProjects(); }}
             >
               <BriefcaseIcon className="size-3.5" />
@@ -265,7 +265,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onResume(); }}
             >
               <FileTextIcon className="size-3.5" />
@@ -273,7 +273,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onProof(); }}
             >
               <ShieldCheckIcon className="size-3.5" />
@@ -281,7 +281,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onAbout(); }}
             >
               <InfoIcon className="size-3.5" />
@@ -289,7 +289,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onContact(); }}
             >
               <MailIcon className="size-3.5" />
