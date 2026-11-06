@@ -249,7 +249,7 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15",
+                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]",
                 activeView === "home" && "bg-primary/20",
               )}
               onClick={(e) => { e.stopPropagation(); onHome(); }}
@@ -260,7 +260,7 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15",
+                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]",
                 activeView === "projects" && "bg-primary/20",
               )}
               onClick={(e) => { e.stopPropagation(); onProjects(); }}
@@ -271,7 +271,7 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15",
+                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]",
                 activeView === "resume" && "bg-primary/20",
               )}
               onClick={(e) => { e.stopPropagation(); onResume(); }}
@@ -282,7 +282,7 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15",
+                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]",
                 activeView === "proof" && "bg-primary/20",
               )}
               onClick={(e) => { e.stopPropagation(); onProof(); }}
@@ -293,7 +293,7 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15",
+                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]",
                 activeView === "about" && "bg-primary/20",
               )}
               onClick={(e) => { e.stopPropagation(); onAbout(); }}
@@ -304,7 +304,7 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15",
+                "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-primary/8 hover:bg-primary/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]",
                 activeView === "contact" && "bg-primary/20",
               )}
               onClick={(e) => { e.stopPropagation(); onContact(); }}

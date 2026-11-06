@@ -108,7 +108,7 @@ const ThreadListNew: FC = () => {
     <ThreadListPrimitive.New asChild>
       <Button
         variant="ghost"
-        className="aui-thread-list-new border-primary/20 bg-primary/8 hover:bg-primary/15 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal"
+        className="aui-thread-list-new border-primary/20 bg-primary/8 hover:bg-primary/15 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.3)]"
       >
         <PlusIcon className="text-primary size-4" />
         {assistant.labels.newThread}
