@@ -250,7 +250,7 @@ const Sidebar: FC<{
               variant="ghost"
               className={cn(
                 "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)] transition-all",
-                activeView === "home" && "bg-primary/20",
+                activeView === "home" && "bg-primary/15",
               )}
               onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
@@ -261,7 +261,7 @@ const Sidebar: FC<{
               variant="ghost"
               className={cn(
                 "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)] transition-all",
-                activeView === "projects" && "bg-primary/20",
+                activeView === "projects" && "bg-primary/15",
               )}
               onClick={(e) => { e.stopPropagation(); onProjects(); }}
             >
@@ -272,7 +272,7 @@ const Sidebar: FC<{
               variant="ghost"
               className={cn(
                 "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)] transition-all",
-                activeView === "resume" && "bg-primary/20",
+                activeView === "resume" && "bg-primary/15",
               )}
               onClick={(e) => { e.stopPropagation(); onResume(); }}
             >
@@ -283,7 +283,7 @@ const Sidebar: FC<{
               variant="ghost"
               className={cn(
                 "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)] transition-all",
-                activeView === "proof" && "bg-primary/20",
+                activeView === "proof" && "bg-primary/15",
               )}
               onClick={(e) => { e.stopPropagation(); onProof(); }}
             >
@@ -294,7 +294,7 @@ const Sidebar: FC<{
               variant="ghost"
               className={cn(
                 "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)] transition-all",
-                activeView === "about" && "bg-primary/20",
+                activeView === "about" && "bg-primary/15",
               )}
               onClick={(e) => { e.stopPropagation(); onAbout(); }}
             >
@@ -305,7 +305,7 @@ const Sidebar: FC<{
               variant="ghost"
               className={cn(
                 "h-8 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal border border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)] transition-all",
-                activeView === "contact" && "bg-primary/20",
+                activeView === "contact" && "bg-primary/15",
               )}
               onClick={(e) => { e.stopPropagation(); onContact(); }}
             >
