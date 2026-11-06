@@ -253,6 +253,7 @@ const Sidebar: FC<{
                 "h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal",
                 activeView === "home" && "bg-primary/10 border border-primary/20",
               )}
+              onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
               <HomeIcon className="size-3.5" />
               Home
@@ -263,6 +264,7 @@ const Sidebar: FC<{
                 "h-7 w-full justify-start gap-2 rounded-md px-2 text-sm font-normal",
                 activeView === "projects" && "bg-primary/10 border border-primary/20",
               )}
+              onClick={(e) => { e.stopPropagation(); onProjects(); }}
             >
               <BriefcaseIcon className="size-3.5" />
               Projects
