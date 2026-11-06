@@ -249,8 +249,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "aui-thread-list-new border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
-                activeView === "home" && "from-primary/18 to-primary/10",
+                "aui-thread-list-new border-primary/20 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
+                activeView === "home"
+                  ? "bg-gradient-to-b from-primary/18 to-primary/10"
+                  : "bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10",
               )}
               onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
@@ -260,8 +262,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "aui-thread-list-new border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
-                activeView === "projects" && "from-primary/18 to-primary/10",
+                "aui-thread-list-new border-primary/20 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
+                activeView === "projects"
+                  ? "bg-gradient-to-b from-primary/18 to-primary/10"
+                  : "bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10",
               )}
               onClick={(e) => { e.stopPropagation(); onProjects(); }}
             >
@@ -271,8 +275,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "aui-thread-list-new border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
-                activeView === "resume" && "from-primary/18 to-primary/10",
+                "aui-thread-list-new border-primary/20 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
+                activeView === "resume"
+                  ? "bg-gradient-to-b from-primary/18 to-primary/10"
+                  : "bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10",
               )}
               onClick={(e) => { e.stopPropagation(); onResume(); }}
             >
@@ -282,8 +288,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "aui-thread-list-new border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
-                activeView === "proof" && "from-primary/18 to-primary/10",
+                "aui-thread-list-new border-primary/20 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
+                activeView === "proof"
+                  ? "bg-gradient-to-b from-primary/18 to-primary/10"
+                  : "bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10",
               )}
               onClick={(e) => { e.stopPropagation(); onProof(); }}
             >
@@ -293,8 +301,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "aui-thread-list-new border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
-                activeView === "about" && "from-primary/18 to-primary/10",
+                "aui-thread-list-new border-primary/20 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
+                activeView === "about"
+                  ? "bg-gradient-to-b from-primary/18 to-primary/10"
+                  : "bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10",
               )}
               onClick={(e) => { e.stopPropagation(); onAbout(); }}
             >
@@ -304,8 +314,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className={cn(
-                "aui-thread-list-new border-primary/20 bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10 data-active:bg-primary/15 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
-                activeView === "contact" && "from-primary/18 to-primary/10",
+                "aui-thread-list-new border-primary/20 h-8 justify-start gap-2 rounded-md border px-2.5 text-sm font-normal shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.2),0_2px_4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_6px_rgba(0,0,0,0.4)]",
+                activeView === "contact"
+                  ? "bg-gradient-to-b from-primary/18 to-primary/10"
+                  : "bg-gradient-to-b from-primary/12 to-primary/6 hover:from-primary/18 hover:to-primary/10",
               )}
               onClick={(e) => { e.stopPropagation(); onContact(); }}
             >
