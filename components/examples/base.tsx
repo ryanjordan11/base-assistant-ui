@@ -242,9 +242,8 @@ const Sidebar: FC<{
           </ThreadListPrimitive.New>
         </>
        ) : (
-        <div
+         <div
           className="relative w-65 flex-1 overflow-y-auto p-3"
-          onClick={onChat}
         >
           <div className="flex flex-col gap-0.5 mb-3">
             <Button
