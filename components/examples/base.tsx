@@ -91,7 +91,7 @@ import {
   type DirectiveChipProps,
 } from "@assistant-ui/react-lexical";
 import Image from "next/image";
-import { useState, type FC } from "react";
+import { useState, useEffect, type FC } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModelSelector } from "@/components/assistant-ui/model-selector";
 import { docsModelOptions } from "@/components/docs/assistant/docs-model-options";
@@ -114,12 +114,12 @@ const Logo: FC = () => {
 };
 
 const RyanAvatar: FC = () => (
-  <span className="relative -translate-x-0.5 size-7 shrink-0 overflow-hidden rounded-full border border-white/25 bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.35),transparent_38%),linear-gradient(145deg,#6b7280,#111827)] shadow-[inset_-2px_-2px_3px_rgba(0,0,0,0.45),inset_1px_1px_2px_rgba(255,255,255,0.35)]">
+  <span className="relative -translate-x-0.5 size-8 shrink-0 overflow-hidden rounded-full border border-white/25 bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.35),transparent_38%),linear-gradient(145deg,#6b7280,#111827)] shadow-[inset_-2px_-2px_3px_rgba(0,0,0,0.45),inset_1px_1px_2px_rgba(255,255,255,0.35)]">
     <Image
       src="/ryan-avatar.jpeg"
       alt="Ryan Jordan"
       fill
-      sizes="28px"
+      sizes="32px"
       className="object-cover"
     />
   </span>
@@ -149,7 +149,7 @@ const Sidebar: FC<{
       <div
         className={cn(
           "mt-2 flex h-12 shrink-0 items-center transition-[padding] duration-200",
-          collapsed ? "px-3.5" : "px-6",
+          collapsed ? "px-3.5" : "px-5",
         )}
       >
         <RyanAvatar />
@@ -501,7 +501,122 @@ const ContactView: FC = () => {
 };
 
 const HomeView: FC = () => {
-  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Home</div>;
+  useEffect(() => {
+    const canvas = document.getElementById("neural-bg") as HTMLCanvasElement | null;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width: number, height: number;
+    let particles: Array<{ x: number; y: number; vx: number; vy: number; size: number }> = [];
+    let mouseX = -1000;
+    let mouseY = -1000;
+
+    const resize = () => {
+      width = canvas.parentElement!.clientWidth;
+      height = canvas.parentElement!.clientHeight;
+      canvas.width = width;
+      canvas.height = height;
+    };
+
+    const init = () => {
+      resize();
+      particles = [];
+      for (let i = 0; i < 150; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 1,
+          vy: (Math.random() - 0.5) * 1,
+          size: 1 + Math.random() * 2,
+        });
+      }
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    };
+
+    canvas.addEventListener("mousemove", handleMouseMove);
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Bounce off edges
+        if (p.x <= 0 || p.x >= width) p.vx *= -1;
+        if (p.y <= 0 || p.y >= height) p.vy *= -1;
+
+        // Draw particle
+        ctx.fillStyle = "#ffffff";
+        ctx.strokeStyle = "#ffffff";
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw lines to nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const ddx = p.x - p2.x;
+          const ddy = p.y - p2.y;
+          const ddist = Math.sqrt(ddx * ddx + ddy * ddy);
+
+          if (ddist < 150) {
+            ctx.globalAlpha = (1 - ddist / 150) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    init();
+    requestAnimationFrame(animate);
+
+    window.addEventListener("resize", resize);
+
+    return () => {
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <div className="flex h-full items-center justify-center relative rounded-2xl" style={{ backgroundImage: "url('/background-home.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>      <canvas id="neural-bg" className="absolute inset-0 w-full h-full z-0" />
+      <div className="relative z-10 absolute left-10 bottom-10 text-white max-w-2/3">
+        <h1 className="text-4xl font-bold tracking-tight">Ryan Jordan</h1>
+        <p className="text-2xl font-semibold text-gray-300 mt-2">Principal AI Engineer</p>
+        <p className="text-gray-400 mt-4 leading-relaxed">20 Years Building Production Systems.</p>
+        <p className="text-gray-400 mt-2 leading-relaxed">Solved LLM hallucinations (validated by 10K perfect verbatim tests). Currently managing 174 applications in production and 7.7B+ tokens processed.</p>
+        <div className="mt-6 flex flex-wrap gap-4 text-sm font-mono text-white border-t border-gray-600 pt-4">
+          <span className="flex items-center gap-1">2,000+ Apps Built</span>
+          <span className="flex items-center gap-1">174 In Production</span>
+          <span className="flex items-center gap-1">500+ Websites</span>
+          <span className="flex items-center gap-1">7.7B+ Tokens Processed</span>
+        </div>
+      </div>
+      <Image
+        src="/ryan_jordan_EXACT_cutout.png"
+        alt="Ryan Jordan"
+        width={800}
+        height={1000}
+        className="relative z-10 absolute right-[-10%] bottom-[-10%] max-w-2/3 object-contain"
+      />
+    </div>
+  );
 };
 
 const ResumeView: FC = () => {
@@ -1044,8 +1159,8 @@ const BranchPicker: FC<BranchPickerPrimitive.Root.Props> = ({
 };
 
 export const Base: FC = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeView, setActiveView] = useState<"chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact">("chat");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
+  const [activeView, setActiveView] = useState<"chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact">("home");
 
   return (
     <div className="flex h-full w-full bg-black">
@@ -1064,7 +1179,7 @@ export const Base: FC = () => {
         />
       </div>
       <div className="flex flex-1 flex-col overflow-hidden p-4">
-        <div className="bg-background flex flex-1 flex-col overflow-hidden rounded-lg">
+        <div className="bg-background flex flex-1 flex-col overflow-hidden rounded-lg border border-primary/20 shadow-lg shadow-white/20">
           <Header
             sidebarCollapsed={sidebarCollapsed}
             onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
