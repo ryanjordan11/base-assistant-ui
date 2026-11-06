@@ -66,6 +66,9 @@ import {
   FileTextIcon,
   GlobeIcon,
   HelpCircleIcon,
+  HomeIcon,
+  InfoIcon,
+  ShieldCheckIcon,
   LanguagesIcon,
   LightbulbIcon,
   MenuIcon,
@@ -124,13 +127,16 @@ const RyanAvatar: FC = () => (
 
 const Sidebar: FC<{
   collapsed?: boolean;
+  onHome: () => void;
   onAbout: () => void;
   onChat: () => void;
   onProjects: () => void;
+  onResume: () => void;
+  onProof: () => void;
   onContact: () => void;
   aboutActive: boolean;
-  activeView: "chat" | "about" | "projects" | "contact";
-}> = ({ collapsed, onAbout, onChat, onProjects, onContact, aboutActive, activeView }) => {
+  activeView: "chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact";
+}> = ({ collapsed, onHome, onAbout, onChat, onProjects, onResume, onProof, onContact, aboutActive, activeView }) => {
   const { assistant } = useBaseConfig();
 
   return (
@@ -159,17 +165,17 @@ const Sidebar: FC<{
           </span>
         </span>
       </div>
-      {collapsed ? (
+       {collapsed ? (
         <>
           <TooltipIconButton
-            tooltip="About"
+            tooltip="Home"
             side="right"
             variant="ghost"
             size="icon"
             className="mx-2 mt-2 size-8"
-            onClick={onAbout}
+            onClick={onHome}
           >
-            <FileTextIcon className="size-4" />
+            <HomeIcon className="size-4" />
           </TooltipIconButton>
           <TooltipIconButton
             tooltip="Projects"
@@ -180,6 +186,36 @@ const Sidebar: FC<{
             onClick={onProjects}
           >
             <BriefcaseIcon className="size-4" />
+          </TooltipIconButton>
+          <TooltipIconButton
+            tooltip="Resume"
+            side="right"
+            variant="ghost"
+            size="icon"
+            className="mx-2 mt-2 size-8"
+            onClick={onResume}
+          >
+            <FileTextIcon className="size-4" />
+          </TooltipIconButton>
+          <TooltipIconButton
+            tooltip="Proof"
+            side="right"
+            variant="ghost"
+            size="icon"
+            className="mx-2 mt-2 size-8"
+            onClick={onProof}
+          >
+            <ShieldCheckIcon className="size-4" />
+          </TooltipIconButton>
+          <TooltipIconButton
+            tooltip="About"
+            side="right"
+            variant="ghost"
+            size="icon"
+            className="mx-2 mt-2 size-8"
+            onClick={onAbout}
+          >
+            <InfoIcon className="size-4" />
           </TooltipIconButton>
           <TooltipIconButton
             tooltip="Contact"
@@ -214,10 +250,10 @@ const Sidebar: FC<{
             <Button
               variant="ghost"
               className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
-              onClick={(e) => { e.stopPropagation(); onAbout(); }}
+              onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
-              <FileTextIcon className="size-3.5" />
-              About
+              <HomeIcon className="size-3.5" />
+              Home
             </Button>
             <Button
               variant="ghost"
@@ -226,6 +262,30 @@ const Sidebar: FC<{
             >
               <BriefcaseIcon className="size-3.5" />
               Projects
+            </Button>
+            <Button
+              variant="ghost"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              onClick={(e) => { e.stopPropagation(); onResume(); }}
+            >
+              <FileTextIcon className="size-3.5" />
+              Resume
+            </Button>
+            <Button
+              variant="ghost"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              onClick={(e) => { e.stopPropagation(); onProof(); }}
+            >
+              <ShieldCheckIcon className="size-3.5" />
+              Proof
+            </Button>
+            <Button
+              variant="ghost"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              onClick={(e) => { e.stopPropagation(); onAbout(); }}
+            >
+              <InfoIcon className="size-3.5" />
+              About
             </Button>
             <Button
               variant="ghost"
@@ -299,7 +359,7 @@ const ThreadTitle: FC = () => {
 const Header: FC<{
   sidebarCollapsed: boolean;
   onToggleSidebar: () => void;
-  activeView: "chat" | "about" | "projects" | "contact";
+  activeView: "chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact";
 }> = ({ sidebarCollapsed, onToggleSidebar, activeView }) => {
   return (
     <header className="flex h-12 shrink-0 items-center gap-2 bg-[#1c1c1c] px-4">
@@ -407,6 +467,18 @@ const ProjectsView: FC = () => {
 
 const ContactView: FC = () => {
   return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Contact</div>;
+};
+
+const HomeView: FC = () => {
+  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Home</div>;
+};
+
+const ResumeView: FC = () => {
+  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Resume</div>;
+};
+
+const ProofView: FC = () => {
+  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Proof</div>;
 };
 
 const ThreadScrollToBottom: FC = () => {
@@ -942,16 +1014,19 @@ const BranchPicker: FC<BranchPickerPrimitive.Root.Props> = ({
 
 export const Base: FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [activeView, setActiveView] = useState<"chat" | "about" | "projects" | "contact">("chat");
+  const [activeView, setActiveView] = useState<"chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact">("chat");
 
   return (
     <div className="flex h-full w-full bg-black">
       <div className="hidden md:block">
         <Sidebar
           collapsed={sidebarCollapsed}
+          onHome={() => setActiveView("home")}
           onAbout={() => setActiveView("about")}
           onChat={() => setActiveView("chat")}
           onProjects={() => setActiveView("projects")}
+          onResume={() => setActiveView("resume")}
+          onProof={() => setActiveView("proof")}
           onContact={() => setActiveView("contact")}
           aboutActive={activeView === "about"}
           activeView={activeView}
@@ -965,7 +1040,7 @@ export const Base: FC = () => {
             activeView={activeView}
           />
           <main className="flex-1 overflow-hidden">
-            {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "contact" ? <ContactView /> : <Thread />}
+            {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView /> : <Thread />}
           </main>
         </div>
       </div>
