@@ -249,7 +249,7 @@ const Sidebar: FC<{
           <div className="flex flex-col gap-0.5 px-1">
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onHome(); }}
             >
               <HomeIcon className="size-3.5" />
@@ -257,7 +257,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onProjects(); }}
             >
               <BriefcaseIcon className="size-3.5" />
@@ -265,7 +265,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onResume(); }}
             >
               <FileTextIcon className="size-3.5" />
@@ -273,7 +273,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onProof(); }}
             >
               <ShieldCheckIcon className="size-3.5" />
@@ -281,7 +281,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onAbout(); }}
             >
               <InfoIcon className="size-3.5" />
@@ -289,7 +289,7 @@ const Sidebar: FC<{
             </Button>
             <Button
               variant="ghost"
-              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-xs font-normal"
+              className="h-7 w-full justify-start gap-2 rounded-md px-2.5 text-sm font-normal"
               onClick={(e) => { e.stopPropagation(); onContact(); }}
             >
               <MailIcon className="size-3.5" />
@@ -527,7 +527,7 @@ const suggestionIconMap: Record<
 };
 
 const suggestionChipClass =
-  "aui-thread-welcome-suggestion border-primary/35 bg-primary/5 text-foreground hover:bg-primary/15 hover:border-primary/60 h-auto gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-normal whitespace-nowrap transition-colors [&_svg]:size-4 [&_svg]:text-primary";
+  "aui-thread-welcome-suggestion border-primary/35 bg-primary/5 text-foreground hover:bg-primary/15 hover:border-primary/60 h-auto gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-normal whitespace-nowrap transition-colors [&_svg]:size-4 [&_svg]:text-primary";
 
 const ThreadSuggestions: FC = () => {
   const { assistant } = useBaseConfig();
