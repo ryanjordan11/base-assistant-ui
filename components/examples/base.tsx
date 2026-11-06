@@ -313,7 +313,9 @@ const Sidebar: FC<{
               Contact
             </Button>
           </div>
-          <ThreadList />
+          <div onClick={onChat}>
+            <ThreadList />
+          </div>
         </div>
       )}
     </aside>
