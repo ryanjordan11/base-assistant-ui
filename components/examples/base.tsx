@@ -245,7 +245,7 @@ const Sidebar: FC<{
          <div
           className="relative w-65 flex-1 overflow-y-auto p-3"
         >
-          <div className="flex flex-col gap-1.5 mb-3">
+          <div className="flex flex-col gap-2.5 mb-3">
             <Button
               variant="ghost"
               className={cn(
