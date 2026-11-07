@@ -91,7 +91,7 @@ import {
   type DirectiveChipProps,
 } from "@assistant-ui/react-lexical";
 import Image from "next/image";
-import { useState, useEffect, type FC } from "react";
+import { useState, useEffect, useRef, type FC } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModelSelector } from "@/components/assistant-ui/model-selector";
 import { docsModelOptions } from "@/components/docs/assistant/docs-model-options";
@@ -494,6 +494,7 @@ const AboutView: FC = () => {
 };
 
 const ProjectsView: FC = () => {
+  const projectsRef = useRef<HTMLElement>(null);
   const [selectedVideo, setSelectedVideo] = useState<FolderFile | null>(null);
   const [selectedApp, setSelectedApp] = useState<FolderFile | null>(null);
   const [selectedFolder, setSelectedFolder] = useState<{ label: string; files: FolderFile[] } | null>(null);
@@ -504,7 +505,7 @@ const ProjectsView: FC = () => {
       const id = parsed.hostname.includes("youtu.be")
         ? parsed.pathname.slice(1)
         : parsed.searchParams.get("v") ?? parsed.pathname.split("/").pop();
-      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+      return id ? `https://www.youtube-nocookie.com/embed/${id}?mute=1` : null;
     } catch {
       return null;
     }
@@ -517,25 +518,16 @@ const ProjectsView: FC = () => {
   };
 
   const selectFolder = (label: string, files: FolderFile[]) => {
+    projectsRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     setSelectedFolder({ label, files });
     setSelectedVideo(null);
     setSelectedApp(null);
   };
 
   return (
-    <section className="relative h-full overflow-y-auto rounded-2xl bg-[#09090b] text-white">
+    <section ref={projectsRef} className="relative h-full overflow-y-auto rounded-2xl bg-[#09090b] text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(70,70,80,0.22),transparent_48%)]" />
       <div className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col gap-8 p-6 md:p-10">
-        {!selectedApp && (
-          <header className="max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">Selected work</p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-tight">Projects</h1>
-            <p className="mt-3 text-sm leading-relaxed text-white/60">
-              Open a folder to explore the products, benchmarks, and systems I have built.
-            </p>
-          </header>
-        )}
-
         <div
           className={`grid transition-[grid-template-rows,opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${
             selectedVideo || selectedApp
@@ -697,15 +689,137 @@ const ProjectsView: FC = () => {
             action="more"
             appearDelay={200}
             files={[
-              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID" },
+              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/mOdne7SbrPw" },
+              { name: "Continuum demo", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtu.be/sk7_5sTGyAU" },
               { name: "Live demo", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
               { name: "Build notes", meta: "TXT · 8 KB" },
             ]}
             onFileSelect={selectFile}
             onViewAll={() => selectFolder("Continuum", [
-              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID" },
+              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/mOdne7SbrPw" },
+              { name: "Continuum demo", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtu.be/sk7_5sTGyAU" },
               { name: "Live demo", meta: "Open project", href: "https://dashboard-app-kappa-brown.vercel.app" },
               { name: "Build notes", meta: "TXT · 8 KB" },
+            ])}
+          />
+
+          <GlassFolder
+            label="OneHub"
+            meta="AI operating system"
+            tone="dark"
+            art="aurora"
+            action="more"
+            appearDelay={300}
+            files={[
+              { name: "Open OneHub", meta: "Live application", iframeUrl: "https://onehub.design" },
+              { name: "Product overview", meta: "Content · Design · Build", art: "glacier" },
+              { name: "AI agents and workflows", meta: "Platform features" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("OneHub", [
+              { name: "Open OneHub", meta: "Live application", iframeUrl: "https://onehub.design" },
+              { name: "Product overview", meta: "Content · Design · Build", art: "glacier" },
+              { name: "AI agents and workflows", meta: "Platform features" },
+            ])}
+          />
+
+          <GlassFolder
+            label="Mycontent.dev"
+            meta="Content operating system"
+            tone="dark"
+            art="dusk"
+            action="more"
+            appearDelay={400}
+            files={[
+              { name: "Open Mycontent.dev", meta: "Live application", iframeUrl: "https://mycontent.dev" },
+              { name: "Winning ideas", meta: "Research and reverse engineering", art: "ember" },
+              { name: "Content pipeline", meta: "Creator workflow" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Mycontent.dev", [
+              { name: "Open Mycontent.dev", meta: "Live application", iframeUrl: "https://mycontent.dev" },
+              { name: "Winning ideas", meta: "Research and reverse engineering", art: "ember" },
+              { name: "Content pipeline", meta: "Creator workflow" },
+            ])}
+          />
+
+          <GlassFolder
+            label="Command OS"
+            meta="Content intelligence"
+            tone="dark"
+            art="verdant"
+            action="more"
+            appearDelay={500}
+            files={[
+              { name: "Open Command OS", meta: "onecommand.dev", iframeUrl: "https://onecommand.dev" },
+              { name: "Winner patterns", meta: "Repeatable content system", art: "aurora" },
+              { name: "Publishing system", meta: "Strategy and timing" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Command OS", [
+              { name: "Open Command OS", meta: "onecommand.dev", iframeUrl: "https://onecommand.dev" },
+              { name: "Winner patterns", meta: "Repeatable content system", art: "aurora" },
+              { name: "Publishing system", meta: "Strategy and timing" },
+            ])}
+          />
+
+          <GlassFolder
+            label="Screen Studio Hub"
+            meta="Visual content studio"
+            tone="dark"
+            art="glacier"
+            action="more"
+            appearDelay={600}
+            files={[
+              { name: "Open Screen Studio Hub", meta: "Live application", iframeUrl: "https://screenstudiohub.vercel.app/" },
+              { name: "Social content", meta: "Screenshots and mockups", art: "dusk" },
+              { name: "Visual presets", meta: "Layouts · Shadows · Perspective" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Screen Studio Hub", [
+              { name: "Open Screen Studio Hub", meta: "Live application", iframeUrl: "https://screenstudiohub.vercel.app/" },
+              { name: "Social content", meta: "Screenshots and mockups", art: "dusk" },
+              { name: "Visual presets", meta: "Layouts · Shadows · Perspective" },
+            ])}
+          />
+
+          <GlassFolder
+            label="Carousel Template Engine"
+            meta="Reusable content templates"
+            tone="dark"
+            art="ember"
+            action="more"
+            appearDelay={700}
+            files={[
+              { name: "Open template engine", meta: "Live application", iframeUrl: "https://www.mycontent.dev/template_engine" },
+              { name: "Carousel structures", meta: "Reusable templates", art: "verdant" },
+              { name: "Educational posts", meta: "Frameworks · Tutorials · Lists" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Carousel Template Engine", [
+              { name: "Open template engine", meta: "Live application", iframeUrl: "https://www.mycontent.dev/template_engine" },
+              { name: "Carousel structures", meta: "Reusable templates", art: "verdant" },
+              { name: "Educational posts", meta: "Frameworks · Tutorials · Lists" },
+            ])}
+          />
+
+          <GlassFolder
+            label="000 Labs"
+            meta="AI provider"
+            tone="dark"
+            art="aurora"
+            action="more"
+            appearDelay={800}
+            files={[
+              { name: "Open 000 Labs", meta: "Live application", iframeUrl: "https://www.000labs.xyz/" },
+              { name: "Model platform", meta: "Direct AI provider", art: "ember" },
+              { name: "Provider overview", meta: "Infrastructure and access" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("000 Labs", [
+              { name: "Open 000 Labs", meta: "Live application", iframeUrl: "https://www.000labs.xyz/" },
+              { name: "Model platform", meta: "Direct AI provider", art: "ember" },
+              { name: "Provider overview", meta: "Infrastructure and access" },
             ])}
           />
         </div>
