@@ -96,6 +96,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModelSelector } from "@/components/assistant-ui/model-selector";
 import { docsModelOptions } from "@/components/docs/assistant/docs-model-options";
 import { DEFAULT_MODEL_ID } from "@/constants/model";
+import GlassFolder, { FolderFileCard, type FolderFile } from "@/components/projects/glass-folder";
 
 const Logo: FC = () => {
   const { assistant } = useBaseConfig();
@@ -493,7 +494,225 @@ const AboutView: FC = () => {
 };
 
 const ProjectsView: FC = () => {
-  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Projects</div>;
+  const [selectedVideo, setSelectedVideo] = useState<FolderFile | null>(null);
+  const [selectedApp, setSelectedApp] = useState<FolderFile | null>(null);
+  const [selectedFolder, setSelectedFolder] = useState<{ label: string; files: FolderFile[] } | null>(null);
+
+  const youtubeEmbedUrl = (url: string) => {
+    try {
+      const parsed = new URL(url);
+      const id = parsed.hostname.includes("youtu.be")
+        ? parsed.pathname.slice(1)
+        : parsed.searchParams.get("v") ?? parsed.pathname.split("/").pop();
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const selectFile = (file: FolderFile) => {
+    if (file.youtubeUrl) setSelectedVideo(file);
+    if (file.iframeUrl) setSelectedApp(file);
+    if (file.youtubeUrl || file.iframeUrl) setSelectedFolder(null);
+  };
+
+  const selectFolder = (label: string, files: FolderFile[]) => {
+    setSelectedFolder({ label, files });
+    setSelectedVideo(null);
+    setSelectedApp(null);
+  };
+
+  return (
+    <section className="relative h-full overflow-y-auto rounded-2xl bg-[#09090b] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(70,70,80,0.22),transparent_48%)]" />
+      <div className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col gap-8 p-6 md:p-10">
+        {!selectedApp && (
+          <header className="max-w-2xl">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">Selected work</p>
+            <h1 className="mt-2 text-4xl font-semibold tracking-tight">Projects</h1>
+            <p className="mt-3 text-sm leading-relaxed text-white/60">
+              Open a folder to explore the products, benchmarks, and systems I have built.
+            </p>
+          </header>
+        )}
+
+        <div
+          className={`grid transition-[grid-template-rows,opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${
+            selectedVideo || selectedApp
+              ? "grid-rows-[1fr] translate-y-0 scale-y-100 opacity-100"
+              : "pointer-events-none grid-rows-[0fr] -translate-y-3 scale-y-95 opacity-0"
+          }`}
+          aria-hidden={!selectedVideo}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <section className={`mx-auto w-full overflow-hidden rounded-2xl border border-white/15 bg-black/60 shadow-2xl backdrop-blur-sm ${selectedApp ? "max-w-none" : "max-w-4xl"}`}>
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                <div>
+                  <p className="text-sm font-medium text-white">{selectedVideo?.name ?? selectedApp?.name ?? "Project preview"}</p>
+                  <p className="text-xs text-white/50">{selectedApp ? "Live app preview" : "Playing inside the app"}</p>
+                </div>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-white/70 hover:text-white"
+                  tabIndex={selectedVideo ? 0 : -1}
+                  onClick={() => {
+                    setSelectedVideo(null);
+                    setSelectedApp(null);
+                  }}
+                >
+                  Close
+                </Button>
+              </div>
+              <div className="aspect-video bg-black">
+                {selectedApp ? (
+                  <iframe
+                    title={selectedApp.name}
+                    src={selectedApp.iframeUrl}
+                    className="h-[calc(100vh-13rem)] min-h-[680px] w-full border-0 bg-white"
+                    loading="lazy"
+                    allow="clipboard-read; clipboard-write"
+                  />
+                ) : selectedVideo && youtubeEmbedUrl(selectedVideo.youtubeUrl ?? "") ? (
+                  <iframe
+                    title={selectedVideo.name}
+                    src={youtubeEmbedUrl(selectedVideo.youtubeUrl ?? "") ?? undefined}
+                    className="h-full w-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <div className="flex h-full min-h-40 items-center justify-center px-6 text-center text-sm text-white/60">
+                    Select a project video to play it here.
+                  </div>
+                )}
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div
+          className={`grid transition-[grid-template-rows,opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${
+            selectedFolder
+              ? "grid-rows-[1fr] translate-y-0 scale-y-100 opacity-100"
+              : "pointer-events-none grid-rows-[0fr] -translate-y-3 scale-y-95 opacity-0"
+          }`}
+          aria-hidden={!selectedFolder}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <section className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-black/60 p-5 shadow-2xl backdrop-blur-sm">
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-white">{selectedFolder?.label ?? "Project files"}</p>
+                  <p className="text-xs text-white/50">All files in this folder</p>
+                </div>
+                <Button type="button" variant="ghost" size="sm" className="text-white/70 hover:text-white" tabIndex={selectedFolder ? 0 : -1} onClick={() => setSelectedFolder(null)}>
+                  Close
+                </Button>
+              </div>
+              <div className="flex flex-wrap justify-center gap-5 px-2 py-3">
+                {selectedFolder?.files.map((file) => (
+                  <FolderFileCard
+                    key={file.name}
+                    file={file}
+                    onClick={() => {
+                      if (file.youtubeUrl) {
+                        setSelectedVideo(file);
+                        setSelectedApp(null);
+                        setSelectedFolder(null);
+                      } else if (file.iframeUrl) {
+                        setSelectedApp(file);
+                        setSelectedVideo(null);
+                        setSelectedFolder(null);
+                      } else if (file.href) {
+                        window.open(file.href, "_blank", "noopener,noreferrer");
+                      }
+                    }}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 justify-items-center gap-x-6 gap-y-12 pb-10 md:grid-cols-2 xl:grid-cols-3">
+          <GlassFolder
+            label="Ubiquitous"
+            meta="AI workspace"
+            tone="dark"
+            art="aurora"
+            action="more"
+            appearDelay={0}
+            files={[
+              { name: "Live application", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
+              { name: "Product walkthrough", meta: "YouTube video", art: "ember", youtubeUrl: "https://youtu.be/GkYeDjyNt-g" },
+              { name: "Architecture notes", meta: "TXT · 4 KB" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Ubiquitous", [
+              { name: "Live application", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
+              { name: "Product walkthrough", meta: "YouTube video", art: "ember", youtubeUrl: "https://youtu.be/GkYeDjyNt-g" },
+              { name: "Architecture notes", meta: "TXT · 4 KB" },
+            ])}
+            menu={[
+              {
+                label: "Open live application",
+                onSelect: () => window.open("https://dashboard-app-kappa-brown.vercel.app", "_blank", "noopener,noreferrer"),
+              },
+            ]}
+          />
+
+          <GlassFolder
+            label="The Rock"
+            meta="AI benchmark"
+            tone="dark"
+            art="ember"
+            action="more"
+            appearDelay={100}
+            files={[
+              { name: "GitHub repository", meta: "Source code", href: "https://github.com/ryanjordan11/the-rock-benchmark" },
+              { name: "Benchmark walkthrough", meta: "YouTube video", art: "glacier", youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID" },
+              { name: "Methodology", meta: "Deterministic verification" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("The Rock", [
+              { name: "GitHub repository", meta: "Source code", href: "https://github.com/ryanjordan11/the-rock-benchmark" },
+              { name: "Benchmark walkthrough", meta: "YouTube video", art: "glacier", youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID" },
+              { name: "Methodology", meta: "Deterministic verification" },
+            ])}
+            menu={[
+              {
+                label: "Open GitHub repository",
+                onSelect: () => window.open("https://github.com/ryanjordan11/the-rock-benchmark", "_blank", "noopener,noreferrer"),
+              },
+            ]}
+          />
+
+          <GlassFolder
+            label="Continuum"
+            meta="Agentic workspace"
+            tone="dark"
+            art="verdant"
+            action="more"
+            appearDelay={200}
+            files={[
+              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID" },
+              { name: "Live demo", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
+              { name: "Build notes", meta: "TXT · 8 KB" },
+            ]}
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Continuum", [
+              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID" },
+              { name: "Live demo", meta: "Open project", href: "https://dashboard-app-kappa-brown.vercel.app" },
+              { name: "Build notes", meta: "TXT · 8 KB" },
+            ])}
+          />
+        </div>
+
+      </div>
+    </section>
+  );
 };
 
 const ContactView: FC = () => {
