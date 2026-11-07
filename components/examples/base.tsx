@@ -1843,40 +1843,58 @@ export const Base: FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [activeView, setActiveView] = useState<"chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact">("home");
   const [hasEntered, setHasEntered] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const completeIntro = () => {
     window.sessionStorage.setItem("app-intro-seen", "true");
     setHasEntered(true);
+    setIsLoading(false);
   };
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const alreadySeen = window.sessionStorage.getItem("app-intro-seen");
+
+    if (prefersReducedMotion || alreadySeen) {
+      completeIntro();
+      return;
+    }
+
+    setTimeout(completeIntro, 100);
+  }, []);
 
   return (
     <div className="flex h-full w-full bg-black">
-      {!hasEntered && <SystemsIntro onComplete={completeIntro} />}
-      <div className="hidden md:block">
-        <Sidebar
-          collapsed={sidebarCollapsed}
-          onHome={() => setActiveView("home")}
-          onAbout={() => setActiveView("about")}
-          onChat={() => setActiveView("chat")}
-          onProjects={() => setActiveView("projects")}
-          onResume={() => setActiveView("resume")}
-          onProof={() => setActiveView("proof")}
-          onContact={() => setActiveView("contact")}
-          aboutActive={activeView === "about"}
-          activeView={activeView}
-        />
-      </div>
-      <div className="flex flex-1 flex-col overflow-hidden p-4">
-        <div className="bg-background flex flex-1 flex-col overflow-hidden rounded-lg border border-primary/20 shadow-lg shadow-white/20">
-          <Header
-            sidebarCollapsed={sidebarCollapsed}
-            onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-            activeView={activeView}
-          />
-          <main className="flex-1 overflow-hidden">
-            {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView onProjects={() => setActiveView("projects")} onResume={() => setActiveView("resume")} /> : <Thread />}
-          </main>
-        </div>
-      </div>
+      {isLoading && <SystemsIntro onComplete={completeIntro} />}
+      {!isLoading && (
+        <>
+          <div className="hidden md:block">
+            <Sidebar
+              collapsed={sidebarCollapsed}
+              onHome={() => setActiveView("home")}
+              onAbout={() => setActiveView("about")}
+              onChat={() => setActiveView("chat")}
+              onProjects={() => setActiveView("projects")}
+              onResume={() => setActiveView("resume")}
+              onProof={() => setActiveView("proof")}
+              onContact={() => setActiveView("contact")}
+              aboutActive={activeView === "about"}
+              activeView={activeView}
+            />
+          </div>
+          <div className="flex flex-1 flex-col overflow-hidden p-4">
+            <div className="bg-background flex flex-1 flex-col overflow-hidden rounded-lg border border-primary/20 shadow-lg shadow-white/20">
+              <Header
+                sidebarCollapsed={sidebarCollapsed}
+                onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+                activeView={activeView}
+              />
+              <main className="flex-1 overflow-hidden">
+                {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView onProjects={() => setActiveView("projects")} onResume={() => setActiveView("resume")} /> : <Thread />}
+              </main>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
