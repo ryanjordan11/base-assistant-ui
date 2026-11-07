@@ -98,6 +98,74 @@ import { docsModelOptions } from "@/components/docs/assistant/docs-model-options
 import { DEFAULT_MODEL_ID } from "@/constants/model";
 import GlassFolder, { FolderFileCard, type FolderFile } from "@/components/projects/glass-folder";
 
+const INTRO_DURATION = 2600;
+
+const SystemsIntro: FC<{ onComplete: () => void }> = ({ onComplete }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const alreadySeen = window.sessionStorage.getItem("app-intro-seen");
+
+    if (prefersReducedMotion || alreadySeen) {
+      onComplete();
+      return;
+    }
+
+    setIsVisible(true);
+    const timer = window.setTimeout(onComplete, INTRO_DURATION);
+    return () => window.clearTimeout(timer);
+  }, [onComplete]);
+
+  const skip = () => {
+    window.sessionStorage.setItem("app-intro-seen", "true");
+    onComplete();
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <div
+      className="systems-intro fixed inset-0 z-100 flex items-center justify-center overflow-hidden bg-[#030405] text-white"
+      role="status"
+      aria-label="Ryan Jordan system initializing"
+    >
+      <div className="systems-intro-grid pointer-events-none absolute inset-0" />
+      <div className="systems-intro-orbit pointer-events-none absolute size-[min(72vw,42rem)] rounded-full border border-white/10" />
+      <div className="systems-intro-orbit systems-intro-orbit-delayed pointer-events-none absolute size-[min(48vw,28rem)] rounded-full border border-cyan-200/10" />
+      <div className="systems-intro-nodes pointer-events-none absolute inset-0" aria-hidden="true">
+        <span /><span /><span /><span /><span /><span />
+      </div>
+      <div className="relative flex flex-col items-center px-6 text-center">
+        <div className="systems-intro-kicker mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.42em] text-white/45">
+          <span className="size-1 rounded-full bg-cyan-200/80 shadow-[0_0_12px_rgba(165,243,252,0.9)]" />
+          Systems coming online
+          <span className="size-1 rounded-full bg-cyan-200/80 shadow-[0_0_12px_rgba(165,243,252,0.9)]" />
+        </div>
+        <div className="systems-intro-title relative overflow-hidden pb-3">
+          <h1 className="text-3xl font-light uppercase tracking-[0.28em] text-white sm:text-5xl">Ryan Jordan</h1>
+          <span className="systems-intro-sweep absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-100 to-transparent" />
+        </div>
+        <p className="systems-intro-subtitle mt-4 text-[10px] uppercase tracking-[0.5em] text-white/50 sm:text-xs">
+          AI Engineer · Architect
+        </p>
+        <div className="systems-intro-readout mt-12 flex gap-5 font-mono text-[9px] uppercase tracking-[0.22em] text-white/25">
+          <span>MEMORY / READY</span>
+          <span>CONTROL / READY</span>
+          <span>EVIDENCE / READY</span>
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={skip}
+        className="absolute bottom-6 right-6 rounded-full border border-white/15 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-white/45 transition-colors hover:border-white/35 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-100"
+      >
+        Skip intro
+      </button>
+    </div>
+  );
+};
+
 const Logo: FC = () => {
   const { assistant } = useBaseConfig();
 
@@ -1715,9 +1783,15 @@ const BranchPicker: FC<BranchPickerPrimitive.Root.Props> = ({
 export const Base: FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [activeView, setActiveView] = useState<"chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact">("home");
+  const [hasEntered, setHasEntered] = useState(false);
+  const completeIntro = () => {
+    window.sessionStorage.setItem("app-intro-seen", "true");
+    setHasEntered(true);
+  };
 
   return (
     <div className="flex h-full w-full bg-black">
+      {!hasEntered && <SystemsIntro onComplete={completeIntro} />}
       <div className="hidden md:block">
         <Sidebar
           collapsed={sidebarCollapsed}
