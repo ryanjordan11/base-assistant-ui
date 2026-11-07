@@ -706,13 +706,13 @@ const ProjectsView: FC = () => {
             appearDelay={0}
             files={[
               { name: "Live application", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
-              { name: "Product walkthrough", meta: "YouTube video", art: "ember", youtubeUrl: "https://youtu.be/GkYeDjyNt-g" },
+              { name: "Product walkthrough", meta: "YouTube video", art: "ember", youtubeUrl: "https://youtu.be/Xm2UiXpjs5M" },
               { name: "Architecture notes", meta: "TXT · 4 KB" },
             ]}
             onFileSelect={selectFile}
             onViewAll={() => selectFolder("Ubiquitous", [
               { name: "Live application", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
-              { name: "Product walkthrough", meta: "YouTube video", art: "ember", youtubeUrl: "https://youtu.be/GkYeDjyNt-g" },
+               { name: "Product walkthrough", meta: "YouTube video", art: "ember", youtubeUrl: "https://youtu.be/Xm2UiXpjs5M" },
               { name: "Architecture notes", meta: "TXT · 4 KB" },
             ])}
             menu={[
@@ -757,15 +757,15 @@ const ProjectsView: FC = () => {
             action="more"
             appearDelay={200}
             files={[
-              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/mOdne7SbrPw" },
+              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/XF4_K7Z-h0I" },
               { name: "Continuum demo", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtu.be/sk7_5sTGyAU" },
               { name: "Live demo", meta: "Open inside app", iframeUrl: "https://www.ubiquitousai.dev/" },
               { name: "Build notes", meta: "TXT · 8 KB" },
             ]}
             onFileSelect={selectFile}
             onViewAll={() => selectFolder("Continuum", [
-              { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/mOdne7SbrPw" },
-              { name: "Continuum demo", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtu.be/sk7_5sTGyAU" },
+               { name: "Project walkthrough", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/XF4_K7Z-h0I" },
+               { name: "Continuum demo", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtu.be/sk7_5sTGyAU" },
               { name: "Live demo", meta: "Open project", href: "https://dashboard-app-kappa-brown.vercel.app" },
               { name: "Build notes", meta: "TXT · 8 KB" },
             ])}
@@ -780,13 +780,13 @@ const ProjectsView: FC = () => {
             appearDelay={300}
             files={[
               { name: "Open OneHub", meta: "Live application", iframeUrl: "https://onehub.design" },
-              { name: "Product overview", meta: "Content · Design · Build", art: "glacier" },
+              { name: "Product overview", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtube.com/shorts/bw039uuf2w8" },
               { name: "AI agents and workflows", meta: "Platform features" },
             ]}
             onFileSelect={selectFile}
             onViewAll={() => selectFolder("OneHub", [
               { name: "Open OneHub", meta: "Live application", iframeUrl: "https://onehub.design" },
-              { name: "Product overview", meta: "Content · Design · Build", art: "glacier" },
+               { name: "Product overview", meta: "YouTube video", art: "glacier", youtubeUrl: "https://youtube.com/shorts/bw039uuf2w8" },
               { name: "AI agents and workflows", meta: "Platform features" },
             ])}
           />
@@ -840,13 +840,13 @@ const ProjectsView: FC = () => {
             appearDelay={600}
             files={[
               { name: "Open Screen Studio Hub", meta: "Live application", iframeUrl: "https://screenstudiohub.vercel.app/" },
-              { name: "Social content", meta: "Screenshots and mockups", art: "dusk" },
+              { name: "Social content", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/SXqALvGttFo" },
               { name: "Visual presets", meta: "Layouts · Shadows · Perspective" },
             ]}
             onFileSelect={selectFile}
             onViewAll={() => selectFolder("Screen Studio Hub", [
               { name: "Open Screen Studio Hub", meta: "Live application", iframeUrl: "https://screenstudiohub.vercel.app/" },
-              { name: "Social content", meta: "Screenshots and mockups", art: "dusk" },
+               { name: "Social content", meta: "YouTube video", art: "dusk", youtubeUrl: "https://youtu.be/SXqALvGttFo" },
               { name: "Visual presets", meta: "Layouts · Shadows · Perspective" },
             ])}
           />
@@ -901,7 +901,43 @@ const ContactView: FC = () => {
   return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Contact</div>;
 };
 
-const HomeView: FC = () => {
+const HomeView: FC<{ onProjects: () => void; onResume: () => void }> = ({ onProjects, onResume }) => {
+  const targets = { commits: 21000, apps: 174, repos: 270, prototypes: 1800, tokens: 7.7 };
+  const startingValues = { commits: 17220, apps: 143, repos: 221, prototypes: 1476, tokens: 6.3 };
+  const [stats, setStats] = useState(startingValues);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      setStats(targets);
+      return;
+    }
+
+    setStats(startingValues);
+    const duration = 2800;
+    const startedAt = performance.now();
+    let frame = 0;
+    let lastUpdate = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      if (now - lastUpdate >= 80 || progress === 1) {
+        setStats({
+          commits: Math.round(startingValues.commits + (targets.commits - startingValues.commits) * eased),
+          apps: Math.round(startingValues.apps + (targets.apps - startingValues.apps) * eased),
+          repos: Math.round(startingValues.repos + (targets.repos - startingValues.repos) * eased),
+          prototypes: Math.round(startingValues.prototypes + (targets.prototypes - startingValues.prototypes) * eased),
+          tokens: Math.round((startingValues.tokens + (targets.tokens - startingValues.tokens) * eased) * 10) / 10,
+        });
+        lastUpdate = now;
+      }
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   useEffect(() => {
     const canvas = document.getElementById("neural-bg") as HTMLCanvasElement | null;
     if (!canvas) return;
@@ -1012,12 +1048,20 @@ Ryan Jordan | AI Engineer & Architect
         <p className="text-gray-400 mt-2 leading-relaxed animate-fade-in-up">
           I&rsquo;m Ryan Jordan, an AI engineer and founder building reliable AI systems, production applications, and technology designed to hold up beyond the demo.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3 animate-fade-in-up">
-          <Button size="sm">Explore my work</Button>
-          <Button size="sm" variant="outline">Test the system</Button>
+        <div className="mt-2 w-full max-w-xl overflow-hidden rounded-xl border border-white/15 bg-black/45 shadow-2xl animate-fade-in-up">
+          <div className="aspect-video w-full">
+            <iframe
+              title="Ryan Jordan system walkthrough"
+              src="https://www.youtube-nocookie.com/embed/9e6wPgjMmug"
+              className="h-full w-full border-0"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
         </div>
       </div>
-      <div className="absolute bottom-4 left-4 z-20 flex gap-3">
+      <div className="absolute bottom-4 left-4 z-20 flex flex-wrap items-center gap-3">
         <a
           href="https://github.com/ryanjordan11"
           target="_blank"
@@ -1040,6 +1084,19 @@ Ryan Jordan | AI Engineer & Architect
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V8.999h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.369 4.266 5.455v6.287zM3.56 20.452h3.558V8.999H3.56v11.453zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124z" />
           </svg>
         </a>
+        <Button size="sm" onClick={onProjects} className="h-8 bg-white/10 px-3 text-xs text-white hover:bg-white/20">
+          Explore my work
+        </Button>
+        <Button size="sm" variant="outline" onClick={onResume} className="h-8 border-white/25 bg-black/25 px-3 text-xs text-white hover:bg-white/10">
+          Resume
+        </Button>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-l border-white/20 pl-3 text-[10px] uppercase tracking-[0.12em] text-white/60">
+          <span><strong className="text-sm font-semibold text-white">{stats.commits.toLocaleString()}</strong> commits</span>
+          <span><strong className="text-sm font-semibold text-white">{stats.apps}</strong> apps shipped · 2026</span>
+          <span><strong className="text-sm font-semibold text-white">{stats.repos}</strong> repos</span>
+          <span><strong className="text-sm font-semibold text-white">{stats.prototypes.toLocaleString()}</strong> prototypes</span>
+          <span><strong className="text-sm font-semibold text-white">{stats.tokens.toFixed(1)}B</strong> tokens · under $100</span>
+        </div>
       </div>
       <Image
         src="/ryan_jordan_EXACT_cutout.png"
@@ -1814,7 +1871,7 @@ export const Base: FC = () => {
             activeView={activeView}
           />
           <main className="flex-1 overflow-hidden">
-            {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView /> : <Thread />}
+            {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView onProjects={() => setActiveView("projects")} onResume={() => setActiveView("resume")} /> : <Thread />}
           </main>
         </div>
       </div>
