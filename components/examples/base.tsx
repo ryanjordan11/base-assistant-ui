@@ -207,6 +207,7 @@ const Sidebar: FC<{
   activeView: "chat" | "home" | "about" | "projects" | "resume" | "proof" | "contact";
 }> = ({ collapsed, onHome, onAbout, onChat, onProjects, onResume, onProof, onContact, aboutActive, activeView }) => {
   const { assistant } = useBaseConfig();
+  const collapsedIconClass = "mt-2 ml-3 mr-1 size-8";
 
   return (
     <aside
@@ -241,7 +242,7 @@ const Sidebar: FC<{
             side="right"
             variant="ghost"
             size="icon"
-            className="mx-2 mt-2 size-8"
+            className={collapsedIconClass}
             onClick={onHome}
           >
             <HomeIcon className="size-4" />
@@ -251,7 +252,7 @@ const Sidebar: FC<{
             side="right"
             variant="ghost"
             size="icon"
-            className="mx-2 mt-2 size-8"
+            className={collapsedIconClass}
             onClick={onProjects}
           >
             <BriefcaseIcon className="size-4" />
@@ -261,7 +262,7 @@ const Sidebar: FC<{
             side="right"
             variant="ghost"
             size="icon"
-            className="mx-2 mt-2 size-8"
+            className={collapsedIconClass}
             onClick={onResume}
           >
             <FileTextIcon className="size-4" />
@@ -271,7 +272,7 @@ const Sidebar: FC<{
             side="right"
             variant="ghost"
             size="icon"
-            className="mx-2 mt-2 size-8"
+            className={collapsedIconClass}
             onClick={onProof}
           >
             <ShieldCheckIcon className="size-4" />
@@ -281,7 +282,7 @@ const Sidebar: FC<{
             side="right"
             variant="ghost"
             size="icon"
-            className="mx-2 mt-2 size-8"
+            className={collapsedIconClass}
             onClick={onAbout}
           >
             <InfoIcon className="size-4" />
@@ -291,7 +292,7 @@ const Sidebar: FC<{
             side="right"
             variant="ghost"
             size="icon"
-            className="mx-2 mt-2 size-8"
+            className={collapsedIconClass}
             onClick={onContact}
           >
             <MailIcon className="size-4" />
@@ -303,7 +304,7 @@ const Sidebar: FC<{
                 side="right"
                 variant="ghost"
                 size="icon"
-                className="mt-1 ml-[0.625rem] size-8"
+                className="mt-1 ml-3 mr-1 size-8"
               >
                 <PlusIcon className="size-4" />
               </TooltipIconButton>
