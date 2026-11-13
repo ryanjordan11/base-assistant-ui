@@ -1,0 +1,1034 @@
+Skip to content
+JobRoadmaps
+Roadmaps
+Resources
+Books
+Courses
+Salaries
+Portfolios
+Staffing Agencies
+Contact
+Home
+Roadmaps
+AI Engineer
+Tech & Software
+AI Engineer Career Roadmap
+AI engineering is software engineering that happens to involve large language models — which means all the hard parts of engineering are still there (reliability, latency, cost, observability) plus a new set of hard parts that didn't exist three years ago (prompt injection, hallucination, non-determinism, context window management). The romanticized version looks like magic. The production version looks like every other distributed system: logs, retries, timeouts, and the occasional catastrophic edge case.
+
+AI Engineer roadmap: the learning path in 5 steps, LLM APIs & Prompt Engineering, then RAG — Retrieval-Augmented Generation, then AI Agents & Tool Use, then Fine-tuning & Model Evaluation, then Production AI Systems & Observability
+The AI Engineer roadmap at a glance: 5 steps, from LLM APIs & Prompt Engineering to Production AI Systems & Observability.
+Is this the right path for you?
+
+AI engineers come from software engineering backgrounds that expanded into LLM integrations, from ML engineering roles that moved up the stack toward application-layer work, and from Python developers who started building AI-powered tools and kept going. The role is genuinely new — it solidified as a job title around 2023 — which means there's no single established pipeline and the expectations vary significantly between companies.
+
+If you think about AI systems in terms of latency budgets, context window management, and failure modes rather than just model capabilities — if you find the engineering challenge of making an LLM reliably useful more interesting than the model itself — you're already thinking like an AI engineer. The role rewards people who can turn a demo into a production system.
+
+This is a genuine opportunity for people who move early. Companies are still figuring out what AI engineer means, which means there's more room for people who can demonstrate working production systems than in more established roles. The bar is rising as the field matures — the window for early-mover advantage is narrowing. Build and ship things now.
+
+Time to entry:
+6–12 months
+Median wage (BLS):
+$133,080
+Updated:
+Apr 2025
+Steps:
+5 stages
+BLS 2024–2034
+↑ +15.8% job growth
+Openings/yr:
+~115,200
+Nearest BLS occupation:
+Software developers
+Source: BLS ↗
+Share:
+X
+LinkedIn
+Reddit
+Copy link
+Career Progression
+
+Where does this role lead?
+Click any role to explore timeline, key skills and, where the Department of Labor publishes it, pay.
+
+Save as Image
+
+1
+Entry
+
+2
+Mid
+
+3
+Senior
+
+4
+Lead
+
+Junior AI Engineer
+
+$74,464 (Level I)
+
+~1–2 yrs
+
+
+AI Engineer
+
+$114,878 (Level III)
+
+~2–4 yrs
+
+
+AI Product Manager
+
+Product track
+
+
+Senior AI Engineer
+
+$135,075 (Level IV)
+
+~4–7 yrs
+
+
+AI Architect
+
+~7–10 yrs
+
+Entry
+
+Junior AI Engineer
+~1–2 yrs
+
+$74,464 (Level I)
+
+You're building LLM-powered features using existing APIs and frameworks. Learning when retrieval-augmented generation beats fine-tuning — and why — is the key early lesson.
+
+Key skills
+
+Python
+OpenAI / Anthropic APIs
+Prompt engineering
+LangChain basics
+REST API integration
+Main track
+Optional branch
+Your current level
+Pay shown is the U.S. Department of Labor prevailing wage for Level I (entry), Level III (mid) and Level IV (senior) in the nearest BLS occupation, base wage for the typical metro, wage year 2025, shown for the main track only. It is a benchmark, not an offer; branches and lead, staff and executive stages have no official figure.
+
+Visual roadmap
+
+AI Engineer learning path
+Work down the line, one step at a time. Tick each skill as you can do it.
+
+Print or save as PDF
+1
+LLM APIs & Prompt Engineering
+3–4 weeks
+Learn to call LLM APIs (Anthropic Claude, OpenAI GPT-4o, Google Gemini). Master prompt engineering: system prompts, few-shot examples, chain-of-thought, structured outputs (JSON mode), and temperature/top-p controls. Understand token economics and prompt caching.
+
+Skills to learn
+
+Claude API (Anthropic)
+OpenAI GPT-4o API
+Google Gemini API
+System Prompts
+Few-Shot Examples
+Chain-of-Thought (CoT)
+JSON Mode / Structured Output
+Temperature & Top-p Sampling
+Token Counting & Cost Estimation
+Prompt Caching
+Context Window Management
+Model Selection Trade-offs
+Start with
+
+Anthropic – Claude API Docs
+DeepLearning.AI – Prompt Engineering Course (Free)
+OpenAI Cookbook – Examples & Guides
+Next: RAG — Retrieval-Augmented Generation
+
+2
+RAG — Retrieval-Augmented Generation
+5–7 weeks
+Build RAG systems that ground LLMs in your data. Learn text chunking strategies, embedding models, vector databases (Pinecone, Weaviate, pgvector, Qdrant), and retrieval pipelines. Implement hybrid search and reranking. Evaluate retrieval quality with recall@k and faithfulness metrics.
+
+Skills to learn
+
+text-embedding-3-small / ada-002
+sentence-transformers
+Pinecone
+Weaviate
+pgvector (PostgreSQL)
+Qdrant
+Chroma
+Recursive Character Splitter
+Semantic Chunking
+Hybrid Search (BM25 + vectors)
+Cohere Rerank
+Recall@k Evaluation
+LlamaIndex
+LangChain
+Start with
+
+LlamaIndex – RAG Framework Docs
+LangChain – RAG How-To Guides
+Pinecone – Learn Vector Databases
+Next: AI Agents & Tool Use
+
+3
+AI Agents & Tool Use
+6–8 weeks
+Build autonomous AI agents that use tools, browse the web, write and execute code, and call external APIs. Learn agentic frameworks (LangGraph, AutoGen, CrewAI, Claude tool use). Design reliable multi-step workflows with proper memory and state management.
+
+Skills to learn
+
+Function Calling / Tool Use
+LangGraph
+LangChain
+AutoGen (Microsoft)
+CrewAI
+ReAct Prompting
+Short-term Agent Memory
+Long-term Memory (vector store)
+Web Search Tool Integration
+Code Execution (sandboxed)
+Multi-Agent Orchestration
+Anthropic Computer Use
+Start with
+
+Anthropic – Tool Use Documentation
+LangGraph – Agent Framework
+DeepLearning.AI – AI Agents in LangGraph (Free)
+Next: Fine-tuning & Model Evaluation
+
+4
+Fine-tuning & Model Evaluation
+6–8 weeks
+Learn when to fine-tune vs. RAG vs. prompt engineering. Practice fine-tuning open-source models (Llama 3, Mistral) with LoRA/QLoRA using Axolotl or Unsloth. Build evaluation pipelines with LLM-as-judge, RAGAS, BERTScore, and custom faithfulness metrics.
+
+Skills to learn
+
+Llama 3.1 / 3.2
+Mistral 7B / Mixtral
+LoRA (Low-Rank Adaptation)
+QLoRA (Quantized LoRA)
+Axolotl
+Unsloth
+HuggingFace Transformers
+RAGAS (RAG Evaluation)
+LLM-as-Judge
+BERTScore
+Faithfulness & Relevance Metrics
+Model Quantization (GGUF, GPTQ)
+Start with
+
+HuggingFace – Fine-tuning LLMs Course (Free)
+RAGAS – RAG Evaluation Framework
+Axolotl – Fine-tuning Toolkit
+Next: Production AI Systems & Observability
+
+5
+Production AI Systems & Observability
+4–6 weeks
+Deploy AI features at scale: streaming responses, latency optimization, cost management, and fallback strategies. Implement LLM observability (LangSmith, Langfuse, Helicone). Build guardrails for prompt injection, hallucination, and output safety. Add semantic caching to cut costs.
+
+Skills to learn
+
+LangSmith
+Langfuse
+Helicone
+Server-Sent Events (SSE) Streaming
+Token Budget Management
+Fallback Chains
+Prompt Injection Defense
+Guardrails AI / NeMo Guardrails
+Semantic Caching (Redis)
+Rate Limiting & Throttling
+FastAPI + Docker Deployment
+CI/CD with LLM Evals (GitHub Actions)
+Start with
+
+LangSmith – LLM Observability Docs
+Langfuse – Open Source LLM Observability
+Anthropic – Production Best Practices
+jobroadmaps.com/roadmaps/ai-engineer · Pay, demand and employer data for this role are further down the page.
+
+Job Market Insights for AI Engineer
+Data-backed
+
+What do employers actually ask for?
+Read from live job postings — how often each credential is named, from rare to almost always.
+
+"Computer Science background" is the most common credential named, yet it appears only rarely soughtly in what we could read. Postings that state it are the minority, but these counts are a floor, so do not read this as "no one asks".
+
+Some postings say outright that equivalent experience or a self-taught route is accepted. That wording is worth reading closely when you see it.
+
+Our read: a portfolio that proves the skill, and a referral from someone inside the company, usually carry more weight than a credential match on paper. That is judgment, not something these counts measure.
+
+Requirement
+
+How often named
+
+Computer Science background
+
+Rarely sought
+flexible
+Equivalent experience accepted
+
+Rarely sought
+Bachelor's degree
+
+Rarely sought
+Master's degree
+
+Rarely sought
+Certification mentioned
+
+Rarely sought
+Our read: how often a credential is named is not how strictly it is enforced. Equivalent experience, a standout portfolio, or a referral often counts for more than the credential listed.
+
+Data-backed
+
+Which skills appear most in job postings?
+Read from live job postings, ranked from most to least often named.
+
+Postings for this role rarely list skills by name. The most-named, Python, is still only occasionally sought, so none of these is a universal requirement.
+
+Skill
+
+How often named
+
+Niche
+Python
+Occasionally sought
+Niche
+TypeScript
+Rarely sought
+Niche
+Generative AI
+
+Rarely sought
+Niche
+Fine-tuning
+
+Rarely sought
+Niche
+JavaScript
+Rarely sought
+Niche
+Security and Governance
+
+Rarely sought
+Niche
+Technical Leadership
+
+Rarely sought
+Niche
+Production Deployment
+
+Rarely sought
+Niche
+Prompt Engineering
+Rarely sought
+Niche
+Context Engineering
+
+Rarely sought
+Niche
+Java
+Rarely sought
+Niche
+SQL
+Rarely sought
+Niche
+Data Pipeline
+
+Rarely sought
+Niche
+Code Review
+
+Rarely sought
+Niche
+MLOps
+Rarely sought
+Niche
+Retrieval-Augmented Generation
+
+Rarely sought
+Niche
+Microservices
+Rarely sought
+Sorted by how often named · JobRoadmaps
+
+Data-backed
+
+Which tools and artifacts appear most in job postings?
+Read from live job postings, ranked from most to least often named.
+
+Claude is the most-named tool, but no tool is a universal requirement here.
+
+Tool / Artifact
+
+How often named
+
+Toolchain
+Claude
+
+Often sought
+Toolchain
+OpenAI API
+Occasionally sought
+DevOps
+AWS
+Rarely sought
+Toolchain
+LangChain
+Rarely sought
+DevOps
+Databricks
+Rarely sought
+Toolchain
+GitHub
+
+Rarely sought
+DevOps
+Elasticsearch
+Rarely sought
+Toolchain
+Salesforce
+
+Rarely sought
+Toolchain
+Cursor
+
+Rarely sought
+DevOps
+Snowflake
+Rarely sought
+Toolchain
+LangGraph
+
+Rarely sought
+Toolchain
+Notion
+
+Rarely sought
+Sorted by how often named · JobRoadmaps
+
+Industry overlay
+
+Targeting a specific industry?
+The core roadmap gets you through the door anywhere. The difference between "qualified" and "they hired someone else" often lives in industry-specific context — the norms, the compliance floors, the tools assumed fluent in that sector.
+
+
+Financial Services & FinTech
+
+Banks and fintech companies applying AI to risk, fraud, and underwriting, where model decisions must be explainable and auditable, not just accurate.
+
+Salary premium
+
++12–22%
+
+Hiring
+
+High
+
+Must have
+Model explainability for regulated decisions
+
+Credit and fraud decisions touched by AI must be explainable to regulators and customers under fair lending laws — a black-box model can be a legal liability, not just a technical one.
+
+Must have
+Guardrails against hallucinated financial advice
+
+An AI feature that fabricates a balance, rate, or transaction detail creates real financial and legal exposure, so output validation against source-of-truth systems is mandatory.
+
+Must have
+Adversarial robustness for fraud models
+
+Fraud rings actively probe AI-based detection systems for blind spots, so engineers must design against active adversaries, not just natural distribution shift.
+
+Important
+PII redaction in LLM pipelines
+
+Prompts and logs touching financial AI features routinely contain account numbers and SSNs, requiring redaction before data reaches any third-party model API.
+
+Important
+Model risk management (SR 11-7 alignment)
+
+Banks apply a formal model governance framework originally written for statistical models to AI systems, requiring documented validation and ongoing monitoring.
+
+Companies hiring:
+
+Stripe
+Brex
+Capital One
+Ramp
+Affirm
+
+Enterprise SaaS & Productivity
+
+B2B SaaS companies embedding AI features directly into existing products, where AI engineers optimize for reliability and cost per customer seat, not raw model capability.
+
+Salary premium
+
++8–16%
+
+Hiring
+
+Very High
+
+Must have
+RAG pipeline design over customer data
+
+SaaS AI features answer questions grounded in each customer's own workspace data, so retrieval quality and per-tenant data isolation matter more than raw model choice.
+
+Must have
+Prompt cost/latency optimization at scale
+
+Every AI feature call is a per-seat cost line item — engineers tune prompt length, caching, and model tiering to keep unit economics from eroding margin.
+
+Must have
+Multi-tenant AI feature isolation
+
+One customer's fine-tuned behavior or uploaded context must never leak into another's session, which shapes how prompts, embeddings, and memory are scoped.
+
+Important
+Structured output reliability (JSON mode / function calling)
+
+AI features feed directly into product UI and downstream workflows, so malformed output breaks the product, not just a chat response.
+
+Important
+Feature flag-gated model rollouts
+
+New models and prompt versions ship to SaaS customers gradually with the ability to roll back per account, mirroring how the rest of the product ships.
+
+Companies hiring:
+
+Notion
+Salesforce
+Intercom
+HubSpot
+Zendesk
+
+Infrastructure & Platform
+
+AI infrastructure and platform companies building the tools other AI engineers rely on — model serving, evaluation, and orchestration at the frontier.
+
+Salary premium
+
++18–30%
+
+Hiring
+
+Medium
+
+Must have
+Model evaluation framework design
+
+Platform companies build the eval harnesses that other teams depend on, so evaluation methodology itself becomes the product, not an internal QA step.
+
+Must have
+Inference optimization (batching, quantization, caching)
+
+Serving models at platform scale means every millisecond and token of latency multiplies across millions of requests, making inference efficiency a core engineering discipline.
+
+Must have
+Agent orchestration and tool-use architecture
+
+Infra companies design the frameworks that let AI systems call tools and chain steps reliably, requiring deep understanding of failure modes across multi-step agent runs.
+
+Important
+Fine-tuning and RLHF pipeline engineering
+
+Building the infrastructure that other companies use to customize models requires hands-on experience with training pipelines most application engineers never touch.
+
+Important
+Context window and token economy management
+
+Platform tools are used by engineers optimizing their own costs, so understanding token-level tradeoffs deeply enough to expose them as product features is expected.
+
+Companies hiring:
+
+Anthropic
+OpenAI
+Together AI
+LangChain
+Weights & Biases
+
+Public Sector & Government
+
+Government AI projects focus on citizen services, data analytics, policy implementation, and national security. Systems must be auditable, transparent, and handle sensitive data.
+
+Must have
+Responsible AI
+
+Government AI faces strict scrutiny on bias, fairness, and explainability; requires principled evaluation.
+
+Must have
+Data Governance
+
+Public sector data systems require careful provenance tracking, access controls, and compliance.
+
+Important
+Stakeholder Communication
+
+Explaining AI decisions to non-technical stakeholders and elected officials is critical.
+
+Companies hiring:
+
+Scale AI
+Palantir
+
+Enterprise & Professional Services
+
+Enterprise consulting firms and software vendors deploy AI across customer organizations. They provide advisory, custom development, and managed services for large-scale transformation.
+
+Must have
+Customer Consulting
+
+Enterprise engineers must translate vague business problems into AI solutions and guide adoption.
+
+Must have
+Integration Engineering
+
+Connecting AI to diverse legacy systems, data sources, and business processes.
+
+Important
+Change Management
+
+Large organizations resist change; engineers help teams adopt AI-driven workflows and behaviors.
+
+Companies hiring:
+
+Composio
+Collibra
+MongoDB
+Twilio
+Zscaler
+Wunderman Thompson
+Cloudflare
+Riot Games
+Navan
+Show less
+Industry premiums based on aggregated job posting data · Updated quarterly
+
+Interactive
+
+How ready are you right now?
+Check the skills you already have to see your current job-market fit.
+
+The most-named skill for this role is Python, so a gap there costs you the most. No single skill dominates, but each gap narrows which postings fit you. Check what you already have to see your biggest current gap.
+
+Readiness Check
+
+Check the skills you already have
+
+0/5
+
+base skills
+
+
+Python
+top blocker
+Occasionally sought
+
+TypeScript
+Rarely sought
+
+Generative AI
+Rarely sought
+
+Fine-tuning
+Rarely sought
+
+JavaScript
+Rarely sought
+Your biggest gap: Python, the most often named of the skills you have not ticked.
+
+Start there, then work down the list.
+
+How we built this: Each step on the scale reflects how often live job postings name the skill, tool or credential, based on our analysis of those postings.
+
+Books worth reading as a AI Engineer
+Where to start, in order. The full list of 12, grouped by career stage, is on its own page.
+
+Getting started
+Cover of Hands-On Large Language Models
+Hands-On Large Language Models
+
+by Jay Alammar, Maarten Grootendorst · 2024
+
+~400 pages
+~10 hrs to read
+
+A visual, code-first tour of tokens, embeddings, text generation, semantic search, RAG and fine-tuning. Read it first if you can program but have not yet built on language models.
+
+View book →
+Cover of Prompt Engineering for LLMs
+Prompt Engineering for LLMs
+
+by John Berryman, Albert Ziegler · 2024
+
+~250 pages
+~6 hrs to read
+
+Covers how models read a prompt and how to assemble context, structure instructions and build prompts into applications. Good early on, when most of your output is prompts and the glue around them.
+
+View book →
+Doing the job
+Cover of AI Engineering
+AI Engineering
+
+by Chip Huyen · 2025
+
+~350 pages
+~9 hrs to read
+
+Covers building applications on foundation models: evaluation, prompting, RAG, finetuning, inference optimization and the architecture around them. The closest thing to a textbook for the role; read it once you have shipped a first feature.
+
+View book →
+LLM Engineer's Handbook
+LLM Engineer's Handbook
+
+by Paul Iusztin, Maxime Labonne · 2024
+
+Walks an LLM application through data collection, fine-tuning, deployment, RAG and monitoring as one end-to-end system. Useful when you are moving from a demo to something that has to run and be maintained.
+
+View book →
+Senior and leading
+Cover of Designing Machine Learning Systems
+Designing Machine Learning Systems
+
+by Chip Huyen · 2022
+
+~390 pages
+~10 hrs to read
+
+Covers data pipelines, feature engineering, deployment, monitoring and iteration for production ML. Read it when you own a system, not just a model, and need to reason about what breaks over time.
+
+View book →
+Cover of Designing Data-Intensive Applications
+Designing Data-Intensive Applications
+
+by Martin Kleppmann · 2017
+
+~620 pages
+~16 hrs to read
+
+The standard reference on storage, replication, partitioning, transactions and stream processing. Read it once your AI features depend on databases and queues you have to reason about.
+
+View book →
+All 12 books for a AI Engineer →Browse all books →
+
+Some book links are affiliate links: we earn a small commission if you buy, at no cost to you. It does not affect what we list.
+
+Prerequisites & Education
+
+What credentials do employers look for?
+These are the most common paths into this role — no single one is required.
+
+Education Level
+
+View list — coming soon
+Bachelor's in Computer Science, Software Engineering, or Mathematics
+Master's in Artificial Intelligence, ML, or Data Science — increasingly expected at senior roles
+Bachelor's in any technical field with demonstrable LLM integration or model deployment experience
+No formal degree — AI Engineer is a newer role where shipped projects carry exceptional weight
+AI Engineer is a rapidly evolving discipline. At most product companies, demonstrated ability to ship LLM-powered features and integrate APIs outweighs formal credentials in 2024–2025 hiring.
+
+Certifications
+
+View list — coming soon
+AWS Certified AI Practitioner — entry-level, $100, covers foundational AI/ML on AWS; good first credential for those coming from cloud backgrounds
+AWS Certified Generative AI Developer Professional — $300, for developers deploying production gen AI on AWS; covers agents, prompt engineering, and responsible AI
+Microsoft Azure AI Engineer Associate — covers Azure OpenAI, Cognitive Services, and ML pipelines; valuable if your company is Azure-first
+ARTiBA Artificial Intelligence Engineer (AIE) — $750, vendor-neutral, validates AI system design and ML fundamentals across industries
+CertNexus Certified AI Practitioner (CAIP) — $368, vendor-neutral credential covering ML algorithms, model deployment, and AI in business contexts
+DeepLearning.AI LLMOps Specialization (Coursera) — directly relevant to production LLM systems
+Google Cloud Professional Machine Learning Engineer — covers ML deployment and pipeline management
+Google Cloud Generative AI Leader — foundational credential for professionals leading AI initiatives on Google Cloud; covers Gemini APIs, Vertex AI, and responsible AI ($99)
+AWS AI Practitioner ($100) is the lowest barrier entry cert worth having. For senior roles, Azure AI Engineer or ARTiBA AIE carry more weight than general cloud certs.
+
+Bootcamps & Training
+
+View list — coming soon
+DeepLearning.AI short courses (Andrew Ng) — RAG, agents, LangChain, function calling
+fast.ai Practical Deep Learning — strong foundation for understanding models you integrate
+Full Stack Deep Learning (FSDL) — end-to-end AI product development, deployment, and monitoring
+Weights & Biases MLOps course — free, practical, covers experiment tracking and model management
+DeepLearning.AI's short courses on RAG, agents, and fine-tuning are the most directly job-relevant training available for AI Engineer roles in 2024–2025.
+
+Portfolio & Other
+
+View list — coming soon
+Deployed LLM-powered app using OpenAI, Anthropic, or open-source models — live URL required
+RAG pipeline implementation with a vector database (Pinecone, Weaviate, or pgvector) on GitHub
+Fine-tuned model published on Hugging Face Hub with evaluation results and a model card
+AI agent or multi-step tool-use system with documented architecture and failure modes
+Technical writeup or talk explaining a real AI product decision, trade-off, or eval methodology
+A deployed AI product with real users is the single most powerful credential for this role. Companies hiring AI Engineers want to see that you can ship, not just experiment in notebooks.
+
+Your Roadmap
+5 steps
+1
+LLM APIs & Prompt Engineering
+3–4 weeks
+Learn to call LLM APIs (Anthropic Claude, OpenAI GPT-4o, Google Gemini). Master prompt engineering: system prompts, few-shot examples, chain-of-thought, structured outputs (JSON mode), and temperature/top-p controls. Understand token economics and prompt caching.
+
+Skills to learn
+
+Claude API (Anthropic)
+OpenAI GPT-4o API
+Google Gemini API
+System Prompts
+Few-Shot Examples
+Chain-of-Thought (CoT)
+JSON Mode / Structured Output
+Temperature & Top-p Sampling
+Token Counting & Cost Estimation
+Prompt Caching
+Context Window Management
+Model Selection Trade-offs
+Browse curated resources →
+2
+RAG — Retrieval-Augmented Generation
+5–7 weeks
+Build RAG systems that ground LLMs in your data. Learn text chunking strategies, embedding models, vector databases (Pinecone, Weaviate, pgvector, Qdrant), and retrieval pipelines. Implement hybrid search and reranking. Evaluate retrieval quality with recall@k and faithfulness metrics.
+
+Skills to learn
+
+text-embedding-3-small / ada-002
+sentence-transformers
+Pinecone
+Weaviate
+pgvector (PostgreSQL)
+Qdrant
+Chroma
+Recursive Character Splitter
+Semantic Chunking
+Hybrid Search (BM25 + vectors)
+Cohere Rerank
+Recall@k Evaluation
+LlamaIndex
+LangChain
+Browse curated resources →
+3
+AI Agents & Tool Use
+6–8 weeks
+Build autonomous AI agents that use tools, browse the web, write and execute code, and call external APIs. Learn agentic frameworks (LangGraph, AutoGen, CrewAI, Claude tool use). Design reliable multi-step workflows with proper memory and state management.
+
+Skills to learn
+
+Function Calling / Tool Use
+LangGraph
+LangChain
+AutoGen (Microsoft)
+CrewAI
+ReAct Prompting
+Short-term Agent Memory
+Long-term Memory (vector store)
+Web Search Tool Integration
+Code Execution (sandboxed)
+Multi-Agent Orchestration
+Anthropic Computer Use
+Browse curated resources →
+4
+Fine-tuning & Model Evaluation
+6–8 weeks
+Learn when to fine-tune vs. RAG vs. prompt engineering. Practice fine-tuning open-source models (Llama 3, Mistral) with LoRA/QLoRA using Axolotl or Unsloth. Build evaluation pipelines with LLM-as-judge, RAGAS, BERTScore, and custom faithfulness metrics.
+
+Skills to learn
+
+Llama 3.1 / 3.2
+Mistral 7B / Mixtral
+LoRA (Low-Rank Adaptation)
+QLoRA (Quantized LoRA)
+Axolotl
+Unsloth
+HuggingFace Transformers
+RAGAS (RAG Evaluation)
+LLM-as-Judge
+BERTScore
+Faithfulness & Relevance Metrics
+Model Quantization (GGUF, GPTQ)
+Browse curated resources →
+5
+Production AI Systems & Observability
+4–6 weeks
+Deploy AI features at scale: streaming responses, latency optimization, cost management, and fallback strategies. Implement LLM observability (LangSmith, Langfuse, Helicone). Build guardrails for prompt injection, hallucination, and output safety. Add semantic caching to cut costs.
+
+Skills to learn
+
+LangSmith
+Langfuse
+Helicone
+Server-Sent Events (SSE) Streaming
+Token Budget Management
+Fallback Chains
+Prompt Injection Defense
+Guardrails AI / NeMo Guardrails
+Semantic Caching (Redis)
+Rate Limiting & Throttling
+FastAPI + Docker Deployment
+CI/CD with LLM Evals (GitHub Actions)
+Browse curated resources →
+Start here this week
+
+This week: build a RAG (Retrieval-Augmented Generation) application on a document set you actually care about. Not a tutorial RAG on sample data — your own documents, your own use case. Evaluate the retrieval quality honestly. Note where it fails. Ship it somewhere people can use it. That project is worth ten certifications.
+
+For structured entry, DeepLearning.AI's short courses on LLM application development cover the core toolkit (prompt engineering, RAG, agents, function calling) systematically. Pair them with reading the Anthropic and OpenAI documentation directly — the API docs tell you what the models can actually do, not what the course assumes they do. The gap is instructive.
+
+Pay
+U.S. Department of Labor data for the nearest BLS occupation, Software developers. BLS has no occupation for this exact title, so treat these as a benchmark.
+
+Median wage, all levels
+$133,080
+Entry Level (Level I)
+$74,464
+AI Engineer / Prompt Engineer
+Mid Level (Level III)
+$114,878
+AI Engineer / LLM Engineer
+Senior Level (Level IV)
+$135,075
+Senior AI Engineer / AI Architect
+Median: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics (median wage, May 2024) and Employment Projections (2024–34). Levels: U.S. Department of Labor Office of Foreign Labor Certification prevailing wage levels (wage year 2025, typical metro), a base-wage benchmark for the metro in the middle of 511 areas, not an offer. See every metro.
+
+Job Titles at Each Level
+Entry
+
+AI Engineer / Prompt Engineer
+
+Mid
+
+AI Engineer / LLM Engineer
+
+Senior
+
+Senior AI Engineer / AI Architect
+
+Steps Overview
+1
+LLM APIs & Prompt Engineering
+
+3–4 weeks
+
+2
+RAG — Retrieval-Augmented Generation
+
+5–7 weeks
+
+3
+AI Agents & Tool Use
+
+6–8 weeks
+
+4
+Fine-tuning & Model Evaluation
+
+6–8 weeks
+
+5
+Production AI Systems & Observability
+
+4–6 weeks
+
+Explore more roadmaps
+
+Not sure this is the right path? Browse all tech career roadmaps.
+
+View Similar Roadmaps
+📄
+Built a project while following this roadmap?
+
+Turn it into a hiring-ready case study in 10 seconds — free.
+
+Generate Case Study
+Learn the skills for this path
+
+Py
+Python
+Courses
+Books
+All →
+JS
+JavaScript
+Courses
+Books
+All →
+SQ
+SQL
+Courses
+Books
+All →
+Do
+Docker
+Courses
+Books
+All →
+Gi
+Git
+Courses
+Books
+All →
+Ready to explore more?
+
+Browse all career roadmaps across tech, business, and creative fields.
+
+All Roadmaps
+Top Skills
+More Tech & Software
+JobRoadmaps
+Step-by-step career guides for people who want a clear path forward — not just a job title to chase.
+
+Categories
+
+Tech & Software
+Business & Finance
+Creative & Design
+Popular Roadmaps
+
+Frontend Developer
+Backend Developer
+Full Stack Developer
+Data Scientist
+Data Engineer
+AI Infrastructure Engineer
+ML Platform Engineer
+AI Engineer
+DevOps Engineer
+Product Manager
+UX Designer
+View all roadmaps →
+Career Data
+
+Resource Hub
+Books
+Courses
+Skill Insights
+Salary Data
+Staffing Agencies
+Blog
+Job Search Tools
+
+Resume Examples
+Cover Letter Examples
+Interview Questions
+Portfolio Project Ideas
+Highest Paid Jobs
+Fastest Growing Jobs
+Company
+
+About
+Contact
+Privacy
+Terms
+Cookies
+Disclaimer
+© 2026 JobRoadmaps. All rights reserved.
+
+Some links are affiliate links, and we may earn a commission. As an Amazon Associate I earn from qualifying purchases. See our disclosure.
+
+
+AI Engineer Roadmap 2026 | JobRoadmaps

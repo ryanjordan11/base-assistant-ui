@@ -91,7 +91,7 @@ import {
   type DirectiveChipProps,
 } from "@assistant-ui/react-lexical";
 import Image from "next/image";
-import { useState, useEffect, useRef, type FC } from "react";
+import { useState, useEffect, useRef, type FC, type ReactNode } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModelSelector } from "@/components/assistant-ui/model-selector";
 import { docsModelOptions } from "@/components/docs/assistant/docs-model-options";
@@ -881,7 +881,7 @@ const ProjectsView: FC = () => {
             files={[
               { name: "Open 000 Labs", meta: "Live application", iframeUrl: "https://www.000labs.xyz/" },
               { name: "Model platform", meta: "Direct AI provider", art: "ember" },
-              { name: "Provider overview", meta: "Infrastructure and access" },
+{ name: "Provider overview", meta: "Infrastructure and access" },
             ]}
             onFileSelect={selectFile}
             onViewAll={() => selectFolder("000 Labs", [
@@ -890,6 +890,27 @@ const ProjectsView: FC = () => {
               { name: "Provider overview", meta: "Infrastructure and access" },
             ])}
           />
+
+          <GlassFolder
+            label="Aligned"
+            meta="Verified dating"
+            tone="dark"
+            art="aurora"
+            action="more"
+            appearDelay={900}
+            files={
+              [
+                { name: "Match", meta: "Connect with verified users", iframeUrl: "https://aligneddating.vercel.app/" },
+                { name: "Chat", meta: "Opt in to chat with matches" },
+              ]
+            }
+            onFileSelect={selectFile}
+            onViewAll={() => selectFolder("Aligned", [
+              { name: "Match", meta: "Connect with verified users", iframeUrl: "https://aligneddating.vercel.app/" },
+              { name: "Chat", meta: "Opt in to chat with matches" },
+            ])}
+          />
+
         </div>
 
       </div>
