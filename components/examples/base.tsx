@@ -1326,7 +1326,65 @@ const ResumeView: FC = () => {
 };
 
 const ProofView: FC = () => {
-  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Proof</div>;
+  const proofVideos = [
+    { title: "Proof · Deterministic verification", url: "https://youtu.be/fN0sWihmnnc" },
+    { title: "Proof · Evidence across models", url: "https://youtu.be/TAFEaUj5fwc" },
+    { title: "Proof · The Rock benchmark", url: "https://youtu.be/oxWNkGe-Oag" },
+    { title: "Proof · Model comparison", url: "https://youtu.be/gfPQqWI_rxg" },
+    { title: "Proof · Access control test", url: "https://youtu.be/_LhI548C8cs" },
+    { title: "Proof · Hallucination audit", url: "https://youtu.be/BVyUBLzx_yc" },
+    { title: "Proof · Cost at scale", url: "https://youtu.be/c-f1WvVoefk" },
+    { title: "Proof · Verification pipeline", url: "https://youtu.be/Q3wyesRSwDc" },
+    { title: "Proof · End-to-end evidence", url: "https://youtu.be/yN9iuC4rut4" },
+  ];
+
+  const embedUrl = (url: string) => {
+    try {
+      const parsed = new URL(url);
+      const id = parsed.hostname.includes("youtu.be")
+        ? parsed.pathname.slice(1)
+        : parsed.searchParams.get("v") ?? parsed.pathname.split("/").pop();
+      return id ? `https://www.youtube-nocookie.com/embed/${id}?mute=1` : null;
+    } catch {
+      return null;
+    }
+  };
+
+  return (
+    <div className="flex h-full flex-col items-center justify-center bg-[#1c1c1c] text-foreground p-6 md:p-10">
+      <div className="w-full max-w-5xl">
+        <header className="mb-8 text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-foreground">
+            Evidence
+          </p>
+          <h1 className="mt-2 text-4xl font-bold tracking-tight">Proof</h1>
+        </header>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {proofVideos.map((video) => (
+            <div
+              key={video.url}
+              className="overflow-hidden rounded-xl border border-white/15 bg-black/45 shadow-2xl backdrop-blur-sm"
+            >
+              <div className="aspect-video w-full">
+                <iframe
+                  title={video.title}
+                  src={embedUrl(video.url) ?? undefined}
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <div className="border-t border-white/10 px-4 py-3">
+                <p className="text-sm font-medium text-white">{video.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const ThreadScrollToBottom: FC = () => {
