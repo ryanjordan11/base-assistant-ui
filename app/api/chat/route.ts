@@ -1,11 +1,15 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { frontendTools } from "@assistant-ui/react-ai-sdk";
+import { api } from "@/convex/_generated/api";
+import { fetchAction } from "convex/nextjs";
 import {
   convertToModelMessages,
   createUIMessageStream,
+  jsonSchema,
   JsonToSseTransformStream,
   stepCountIs,
   streamText,
+  tool,
   type JSONSchema7,
   type UIMessage,
   type UIMessageStreamWriter,
@@ -13,7 +17,7 @@ import {
 import { resolveModelId } from "@/constants/model";
 import { defaultBaseConfig, type ResolvedBaseConfig } from "@/lib/base/defaults";
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 const demoTiming = {
   beforeFirstTextMs: 180,
@@ -34,11 +38,13 @@ export async function POST(req: Request) {
     system,
     tools,
     config,
+    previewSessionId,
   }: {
     messages: UIMessage[];
     system?: string;
     tools?: Record<string, { description?: string; parameters: JSONSchema7 }>;
     config?: { modelName?: string };
+    previewSessionId?: string;
   } = await req.json();
   const modelId = resolveModelId(config?.modelName);
 
@@ -55,6 +61,7 @@ export async function POST(req: Request) {
         system,
         tools: tools ?? {},
         modelId,
+        sessionId: previewSessionId,
       });
     },
   });
@@ -80,26 +87,130 @@ async function streamProviderRun(
     system,
     tools,
     modelId,
+    sessionId,
   }: {
     messages: UIMessage[];
     system?: string;
     tools: Record<string, { description?: string; parameters: JSONSchema7 }>;
     modelId: string;
+    sessionId?: string;
   },
 ) {
   const aiSDKTools = frontendTools(tools);
+  const allTools = {
+    ...aiSDKTools,
+    generateImage: createImageGenerationTool({ messages, sessionId }),
+  };
 
   const result = streamText({
     model: openai.chat(modelId),
     system,
-    messages: await convertToModelMessages(messages, { tools: aiSDKTools }),
+    messages: await convertToModelMessages(messages, { tools: allTools }),
     stopWhen: stepCountIs(6),
-    tools: aiSDKTools,
+    tools: allTools,
   });
 
   for await (const chunk of result.toUIMessageStream()) {
     writer.write(chunk);
   }
+}
+
+function createImageGenerationTool({
+  messages,
+  sessionId,
+}: {
+  messages: UIMessage[];
+  sessionId?: string;
+}) {
+  return tool({
+    description:
+      "Generate an image from a detailed prompt, or edit an existing image when the user asks to change it. Call this whenever the user asks for a picture, illustration, logo, mockup, or visual. Use a rich visual description in the prompt.",
+    inputSchema: jsonSchema<{ prompt: string; edit?: boolean }>({
+      type: "object",
+      properties: {
+        prompt: {
+          type: "string",
+          description:
+            "Detailed visual prompt. For edits, describe the change rather than the whole image.",
+        },
+        edit: {
+          type: "boolean",
+          description:
+            "Set true when the user wants to modify an uploaded or previously generated image.",
+        },
+      },
+      required: ["prompt"],
+      additionalProperties: false,
+    }),
+    execute: async ({ prompt, edit }) => {
+      try {
+        const uploadedImages = extractUploadedImages(messages);
+        const previousImage = edit
+          ? extractLatestGeneratedImageUrl(messages)
+          : undefined;
+        const referenceImages =
+          uploadedImages.length > 0
+            ? uploadedImages
+            : previousImage
+              ? [previousImage]
+              : undefined;
+
+        const image = await fetchAction(api.imageGeneration.generate, {
+          prompt,
+          ...(referenceImages?.length ? { referenceImages } : {}),
+          ...(sessionId ? { sessionId } : {}),
+        });
+
+        return { images: [image] };
+      } catch (error) {
+        console.error("generateImage tool failed", error);
+        throw error;
+      }
+    },
+    toModelOutput: () => ({
+      type: "text",
+      value: "Image generated. The UI displays it inline with a download option.",
+    }),
+  });
+}
+
+function extractUploadedImages(messages: UIMessage[]): string[] {
+  const lastUserMessage = [...messages]
+    .reverse()
+    .find((message) => message.role === "user");
+
+  return (
+    lastUserMessage?.parts.flatMap((part) =>
+      part.type === "file" && part.mediaType.startsWith("image/")
+        ? [part.url]
+        : [],
+    ) ?? []
+  );
+}
+
+function extractLatestGeneratedImageUrl(messages: UIMessage[]) {
+  for (let i = messages.length - 1; i >= 0; i -= 1) {
+    const message = messages[i];
+    if (message.role !== "assistant") continue;
+
+    for (let j = message.parts.length - 1; j >= 0; j -= 1) {
+      const part = message.parts[j];
+      if (
+        part.type !== "tool-generateImage" ||
+        part.state !== "output-available"
+      ) {
+        continue;
+      }
+
+      const output = part.output as {
+        images?: Array<{ originalUrl?: string }>;
+      };
+      const url = output.images?.[0]?.originalUrl;
+      if (url) return url;
+    }
+  }
+
+  return undefined;
 }
 
 async function streamBaseFallback(

@@ -9,6 +9,7 @@ import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { DotMatrix } from "@/components/assistant-ui/dot-matrix";
 import { MessageTiming } from "@/components/assistant-ui/message-timing";
 import { ToolFallback } from "@/components/assistant-ui/tool-fallback";
+import { GeneratedImageTool } from "@/components/assistant-ui/generated-image";
 import {
   ToolGroupContent,
   ToolGroupRoot,
@@ -1642,8 +1643,9 @@ const AssistantMessage: FC = () => {
       >
         <MessagePrimitive.GroupedParts
           groupBy={groupPartByType({
-            reasoning: ["group-chainOfThought", "group-reasoning"],
+            reasoning: ["group-chainOfThought"],
             "tool-call": ["group-chainOfThought", "group-tool"],
+            "tool-call:generateImage": [],
             "standalone-tool-call": [],
           })}
         >
@@ -1677,6 +1679,9 @@ const AssistantMessage: FC = () => {
               case "reasoning":
                 return <Reasoning {...part} />;
               case "tool-call":
+                if (part.toolName === "generateImage") {
+                  return <GeneratedImageTool part={part} />;
+                }
                 return part.toolUI ?? <ToolFallback {...part} />;
               case "indicator":
                 return <AssistantWorkingIndicator />;
