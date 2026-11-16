@@ -559,8 +559,430 @@ const Thread: FC = () => {
   );
 };
 
+type AboutSection = {
+  heading: string;
+  lead?: string;
+  items: { text: string; sub?: string[] }[];
+  after?: { label: string; items: string[] };
+};
+
+const aboutSections: AboutSection[] = [
+  {
+    heading: "AI reliability and hallucination-free systems",
+    items: [
+      { text: "Built **Ubiquitous**, a working AI system that externalizes memory, authority, permissions, evidence, retrieval, and execution outside the language model." },
+      { text: "Built persistent external memory and cross-conversation retrieval so the model is not responsible for remembering its own source of truth." },
+      { text: "Built exact, verbatim retrieval systems that return stored information character-for-character." },
+      { text: "Reached a documented result of **more than 4.3 million characters reproduced verbatim**, deterministically checked, SHA-verified, independently tested, and reproducible." },
+      { text: "Completed a documented **221,718-character perfect-score test** across six test sets." },
+      { text: "Completed **10,000 cumulative tests**, including independent evaluations, with perfect recorded results under the defined test conditions." },
+      { text: "Recorded **0% hallucinations across more than 1,020 verified tests** under the defined test conditions." },
+      { text: "Built systems that preserve information across separate conversations and new chat sessions." },
+      { text: "Tested Ubiquitous against Claude, Gemini, ChatGPT, Grok, Perplexity, Z.ai, Manus, Meta, and other AI systems." },
+      { text: "Demonstrated a comparative result in which Ubiquitous reproduced a stored model list while Grok, Claude, ChatGPT, and Gemini failed the same type of verbatim-recall test." },
+    ],
+  },
+  {
+    heading: "The Rock Benchmark",
+    items: [
+      { text: "Created **The Rock**, a deterministic AI benchmark that does not use AI judges." },
+      { text: "Built exact-byte, character-level, SHA-256, expected-output, and pass/fail verification systems." },
+      { text: "Tested **440 AI-model entries across five provider catalogs** with perfect recorded verbatim recall." },
+      { text: "Built reproducible benchmark procedures using fixed datasets, predefined answers, new chats, exact comparison, human scoring, and mandatory failure reporting." },
+      { text: "Built the **Break-In Suite** for adversarial access-control testing." },
+      { text: "Tested unauthorized access, wrong credentials, cross-record access, prompt manipulation, incomplete requests, and attempts to force protected-data disclosure." },
+      { text: "Achieved a documented **180/180 live adversarial access-control result**." },
+      { text: "Documented a preparation failure, corrected the architecture, tightened the rules, and separated the failure from the final test suite instead of hiding it." },
+      { text: "Built a public evidence archive containing benchmark reports, source files, test logs, recordings, screenshots, hash evidence, and reproducible code." },
+    ],
+  },
+  {
+    heading: "AI operating systems and platforms",
+    items: [
+      {
+        text: "Built **OneHub.design**, an all-in-one AI operating system with:",
+        sub: [
+          "22+ connected agents",
+          "100+ skills",
+          "150+ design systems",
+          "261+ plugins",
+          "1,000+ connected applications through Composio",
+          "Image, video, audio, design, coding, automation, and document workflows",
+          "Live HTML artifact creation",
+          "Real source-code export",
+          "MCP and CLI integrations",
+          "Parallel sessions and agent handoffs",
+          "Local-first architecture",
+          "Sandboxed previews",
+          "Browser and workflow automation",
+        ],
+      },
+      { text: "Built **Command OS / OneCommand.dev**, an autonomous content operating system that turns past content winners into repeatable weekly production systems." },
+      { text: "Built **Continuum**, an agentic workspace for operating applications, AI systems, research, tools, and browser panes side by side." },
+      {
+        text: "Built **000 Labs**, a complete white-label AI-provider business platform with:",
+        sub: [
+          "AI chat",
+          "Model catalogs",
+          "Agents",
+          "Playground",
+          "API keys",
+          "Credits",
+          "Payments",
+          "Usage tracking",
+          "Documentation",
+          "Customer accounts",
+          "Provider administration",
+          "Analytics",
+          "Pricing and model management",
+        ],
+      },
+      { text: "Built AI gateway and provider infrastructure to route models and manage usage." },
+      { text: "Built local-first and hands-free AI environments designed to operate across computers, files, browsers, tools, applications, and development systems." },
+    ],
+  },
+  {
+    heading: "Multi-agent orchestration and Daytona",
+    items: [
+      { text: "Built a visual AI-agent command center capable of decomposing one task into subtasks and spawning specialist agents." },
+      { text: "Built orchestration for creative, research, strategy, general-purpose, and coding agents." },
+      { text: "Built workflows where agents communicate, execute separate assignments, and connect through visual task graphs." },
+      {
+        text: "Built a Daytona-powered sandbox system that can:",
+        sub: [
+          "Provision cloud compute",
+          "Create Python, TypeScript, and JavaScript environments",
+          "Start, stop, destroy, and fork servers",
+          "Run code and terminal commands",
+          "Read and write files",
+          "Display CPU and memory metrics",
+          "Place live servers on the agent canvas",
+        ],
+      },
+      { text: "Built multi-agent orchestration capable of spawning **hundreds of agents simultaneously**." },
+      { text: "Built agent workflows across coding, design, research, automation, media generation, documentation, and product development." },
+    ],
+  },
+  {
+    heading: "Voice, hands-free, and local-machine systems",
+    items: [
+      { text: "Built voice-to-voice AI systems." },
+      { text: "Built hands-free voice-controlled workflows." },
+      { text: "Built voice assistants designed to operate across computers, applications, files, and active work environments." },
+      { text: "Built systems for real-time spoken interaction and voice-driven application control." },
+      { text: "Built screen-sharing, multi-screen, and computer-use systems." },
+      { text: "Built local-machine AI setups in which tools, credentials, workflows, agents, and applications remain under the user's control." },
+      { text: "Built voice, avatar, video, and AI-media systems, including Open Avatar and Swift AI Voice Assistant." },
+    ],
+  },
+  {
+    heading: "Software production",
+    items: [
+      { text: "Built **174 production applications**." },
+      { text: "Built more than **1,500 prototypes**." },
+      { text: "Built approximately **2,000 applications and systems in 2026**, according to the documented development record." },
+      { text: "Used **8.3552 billion tokens** in the current documented usage total as of November 15 at 10 PM." },
+      { text: "Used more than **1 billion tokens on one account**, with additional development across other accounts." },
+      { text: "Built hundreds of repositories, deployments, tools, dashboards, SaaS products, AI systems, content systems, and business platforms." },
+      { text: "Deployed a large portfolio of live products through Vercel." },
+      { text: "Worked across TypeScript, JavaScript, Python, React, Next.js, Vite, Electron, Tauri, Kotlin, Java, PHP, Go, Rust, Django, Convex, Supabase, Neon, Clerk, Better Auth, Azure, Daytona, Composio, and more." },
+    ],
+  },
+  {
+    heading: "Early AI engineering",
+    items: [
+      { text: "In **2023**, built AI order-taking chatbots and automated ordering systems for CannaBuds Thailand." },
+      { text: "Built the system around real business operations rather than treating AI as a demonstration." },
+      { text: "Developed autonomous ordering workflows designed to handle customer interaction and ordering processes." },
+    ],
+  },
+  {
+    heading: "Content, distribution, and Facebook",
+    items: [
+      { text: "Generated **2.4 billion Facebook views in one month**." },
+      { text: "Generated **more than 5 billion Facebook views in one year**." },
+      { text: "Built content systems across Facebook groups with millions of members." },
+      { text: "Built and operated large Facebook communities in AI, spirituality, dating, self-development, inspiration, and entrepreneurship." },
+      { text: "Managed or built distribution across communities ranging from tens of thousands to more than 400,000 members." },
+      { text: "Built MetaMasters and served **1,000+ clients**." },
+      { text: "Created a **one-million-views-in-24-hours guarantee**." },
+      { text: "Recorded **zero refunds** under that guarantee." },
+      { text: "Every student reached one million views in 24 hours or less, according to the documented program record." },
+      { text: "Ranked **number two in the world among AI innovators on Facebook** according to Austin Armstrong's published list." },
+      { text: "Featured by Facebook as a **Global Game Changer** for turning a \"vibe\" into a larger vision." },
+    ],
+  },
+  {
+    heading: "Content and creator products",
+    lead: "Built and launched:",
+    items: [
+      { text: "MyContent.dev — autonomous content operating system" },
+      { text: "Command OS — winner-based weekly content engine" },
+      { text: "Revenue Engine — Facebook profile, audience, funnel, and monetization analysis" },
+      { text: "Viral Threads — AI thread creation and virality analysis" },
+      { text: "Screen Studio Hub — screenshot, code-card, product-shot, and marketing-visual studio" },
+      { text: "Carousel Template Engine" },
+      { text: "880 Free Viral Memes" },
+      { text: "Micro-SaaS Builder" },
+      { text: "Motion Studio / Agnes Video" },
+      { text: "The 4-Part Method" },
+      { text: "AI video and avatar systems" },
+      { text: "Creator studios and content calendars" },
+      { text: "Viral content and publishing systems" },
+    ],
+    after: {
+      label: "Command OS currently presents:",
+      items: [
+        "**4.2B+ views generated**",
+        "**312% median reach lift**",
+        "**7× posting consistency**",
+        "A weekly content engine based on proven winners instead of random prompts",
+      ],
+    },
+  },
+  {
+    heading: "Consumer and community products",
+    items: [
+      { text: "Built **Aligned**, a verified dating platform with **1,000+ members**." },
+      { text: "Built platforms for dating, relationships, spirituality, self-development, and community." },
+      { text: "Built products connected to large audiences and existing Facebook distribution systems." },
+      { text: "Built consumer-facing systems that combine community, content, AI, identity, and interaction." },
+    ],
+  },
+];
+
+const aboutBodyOfWork = [
+  "AI reliability systems",
+  "Hallucination-free tested workflows",
+  "External memory",
+  "Exact retrieval",
+  "Deterministic benchmarks",
+  "Access-control systems",
+  "AI operating systems",
+  "Multi-agent orchestration",
+  "Daytona cloud environments",
+  "Voice-to-voice assistants",
+  "Hands-free computer systems",
+  "Local-machine setups",
+  "AI-provider infrastructure",
+  "Content operating systems",
+  "Media-generation platforms",
+  "Consumer applications",
+  "Production SaaS products",
+  "Large-scale content distribution",
+  "Facebook communities with millions of members",
+];
+
+const aboutSummary =
+  "**Ryan Jordan is an AI engineer, systems architect, and founder who began deploying practical AI systems in 2023 and went on to build AI operating systems, hands-free voice systems, Daytona-powered multi-agent environments, provider infrastructure, deterministic benchmarks, external-memory architecture, and more than 174 production applications. His Ubiquitous system has produced documented zero-hallucination results under defined test conditions, more than 4.3 million deterministically checked verbatim characters, 10,000 cumulative tests, and 180/180 adversarial access-control results.**";
+
+const renderInline = (text: string) =>
+  text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={i}>{part.slice(2, -2)}</strong>
+    ) : (
+      part
+    ),
+  );
+
 const AboutView: FC = () => {
-  return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">About</div>;
+  const stats = [
+    { value: "4.3M+", label: "verbatim characters" },
+    { value: "10,000", label: "cumulative tests" },
+    { value: "0%", label: "hallucinations · 1,020+" },
+    { value: "180/180", label: "access control" },
+    { value: "440", label: "models · 5 catalogs" },
+    { value: "174", label: "production apps" },
+    { value: "8.3552B", label: "tokens documented" },
+    { value: "5B+", label: "views / year" },
+  ];
+
+  const fade = (delay: number) => ({
+    animationDelay: `${delay}ms`,
+    animationFillMode: "both" as const,
+  });
+
+  return (
+    <div className="h-full overflow-y-auto bg-[#09090b] text-white">
+      <header className="relative overflow-hidden border-b border-white/10">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(70,70,80,0.30),transparent_55%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage: "radial-gradient(circle at top, black, transparent 72%)",
+            WebkitMaskImage: "radial-gradient(circle at top, black, transparent 72%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-5xl px-6 py-16 text-center md:py-20">
+          <div
+            className="animate-fade-in-up mb-6 flex items-center justify-center gap-3 font-mono text-[10px] uppercase tracking-[0.45em] text-white/40"
+            style={fade(0)}
+          >
+            <span className="size-1 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
+            Body of work
+            <span className="size-1 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
+          </div>
+          <h1
+            className="animate-fade-in-up text-4xl font-bold tracking-tight md:text-6xl"
+            style={fade(80)}
+          >
+            Ryan Jordan&rsquo;s{" "}
+            <span className="bg-gradient-to-b from-white to-white/45 bg-clip-text text-transparent">
+              Achievements
+            </span>
+          </h1>
+          <p
+            className="animate-fade-in-up mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/50 md:text-base"
+            style={fade(160)}
+          >
+            AI engineer, systems architect, and founder who began deploying practical AI
+            systems in 2023 and went on to build AI operating systems, hands-free voice
+            systems, Daytona-powered multi-agent environments, provider infrastructure,
+            deterministic benchmarks, external-memory architecture, and more than 174
+            production applications.
+          </p>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-5xl px-6 py-12 md:py-14">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="animate-fade-in-up rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm transition-colors hover:border-white/25 hover:bg-white/[0.06]"
+              style={fade(240 + i * 55)}
+            >
+              <p className="font-mono text-2xl font-semibold tracking-tight md:text-3xl">
+                {stat.value}
+              </p>
+              <p className="mt-1.5 text-[10px] uppercase tracking-[0.12em] text-white/40">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-5xl px-6 pb-20">
+        <div className="flex flex-col gap-4">
+          {aboutSections.map((section, index) => (
+            <section
+              key={section.heading}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.04] md:p-8"
+            >
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="mb-5 flex items-baseline gap-3">
+                <span className="font-mono text-xs text-primary/70">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h2 className="text-xl font-semibold tracking-tight md:text-2xl">
+                  {section.heading}
+                </h2>
+              </div>
+
+              {section.lead && (
+                <p className="mb-3 text-sm font-medium text-white/80">{section.lead}</p>
+              )}
+
+              <ul className="space-y-2.5 text-sm leading-relaxed text-white/60 [&_strong]:font-semibold [&_strong]:text-white">
+                {section.items.map((item, i) => (
+                  <li key={i} className="relative pl-5">
+                    <span
+                      className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60"
+                      aria-hidden="true"
+                    />
+                    {renderInline(item.text)}
+                    {item.sub && (
+                      <ul className="mt-2 space-y-1.5 border-l border-white/10 pl-4">
+                        {item.sub.map((sub, j) => (
+                          <li key={j} className="relative pl-4 text-white/45">
+                            <span
+                              className="absolute left-0 top-[0.6em] size-1 rounded-full bg-white/25"
+                              aria-hidden="true"
+                            />
+                            {renderInline(sub)}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+
+              {section.after && (
+                <div className="mt-5 rounded-xl border border-white/10 bg-black/30 p-4">
+                  <p className="mb-2.5 text-[10px] font-medium uppercase tracking-[0.15em] text-white/40">
+                    {section.after.label}
+                  </p>
+                  <ul className="space-y-2 text-sm leading-relaxed text-white/60 [&_strong]:font-semibold [&_strong]:text-white">
+                    {section.after.items.map((item, i) => (
+                      <li key={i} className="relative pl-5">
+                        <span
+                          className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60"
+                          aria-hidden="true"
+                        />
+                        {renderInline(item)}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          ))}
+
+          <section className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.04] md:p-8">
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+              aria-hidden="true"
+            />
+            <div className="mb-5 flex items-baseline gap-3">
+              <span className="font-mono text-xs text-primary/70">
+                {String(aboutSections.length + 1).padStart(2, "0")}
+              </span>
+              <h2 className="text-xl font-semibold tracking-tight md:text-2xl">
+                The larger achievement
+              </h2>
+            </div>
+            <p className="mb-2 text-sm leading-relaxed text-white/60">
+              Ryan Jordan&rsquo;s biggest achievement is not one number or one application.
+            </p>
+            <p className="mb-4 text-sm leading-relaxed text-white/60">
+              It is that he built an entire connected body of work:
+            </p>
+            <ul className="grid gap-x-8 gap-y-2 text-sm text-white/60 sm:grid-cols-2 [&_strong]:font-semibold [&_strong]:text-white">
+              {aboutBodyOfWork.map((item) => (
+                <li key={item} className="relative pl-5">
+                  <span
+                    className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60"
+                    aria-hidden="true"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <blockquote className="relative overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 via-transparent to-transparent p-7 backdrop-blur-sm md:p-9">
+            <span
+              className="pointer-events-none absolute -top-7 left-4 font-serif text-8xl leading-none text-primary/20"
+              aria-hidden="true"
+            >
+              &ldquo;
+            </span>
+            <p className="relative text-base font-medium leading-relaxed text-white/90 md:text-lg">
+              {aboutSummary.replace(/\*\*/g, "")}
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const ProjectsView: FC = () => {
