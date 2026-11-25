@@ -304,7 +304,7 @@ const Sidebar: FC<{
                 side="right"
                 variant="ghost"
                 size="icon"
-                className="mt-1 ml-3 mr-1 size-8"
+                className="mt-0 ml-3 mr-1 size-8"
               >
                 <PlusIcon className="size-4" />
               </TooltipIconButton>
