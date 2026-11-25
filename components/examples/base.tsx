@@ -515,7 +515,7 @@ const Thread: FC = () => {
         turnAnchor="top"
         data-slot="aui_thread-viewport"
         className={cn(
-          "relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-4",
+          "relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-3 pt-3 sm:px-4 sm:pt-4",
           isEmpty && "justify-center",
         )}
       >
@@ -848,7 +848,7 @@ const AboutView: FC = () => {
       </header>
 
       <div className="mx-auto max-w-5xl px-6 py-12 md:py-14">
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-4">
           {stats.map((stat, i) => (
             <div
               key={stat.label}
@@ -1480,11 +1480,11 @@ const HomeView: FC<{ onProjects: () => void; onResume: () => void }> = ({ onProj
     <div className="flex h-full items-center justify-center relative rounded-2xl overflow-hidden" style={{ backgroundImage: "url('/background-home.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="absolute inset-0 bg-black/40" />
       <canvas id="neural-bg" className="absolute inset-0 w-full h-full z-0" />
-      <div className="relative z-10 absolute left-10 bottom-10 text-white max-w-2/3 flex flex-col gap-4">
+      <div className="relative z-10 flex flex-col gap-4 text-center md:text-left p-4 md:absolute md:left-10 md:bottom-10 md:max-w-2/3 md:p-0">
         <p className="text-xs text-gray-400 tracking-widest uppercase animate-fade-in-up">
 Ryan Jordan | AI Engineer & Architect
         </p>
-        <h1 className="text-5xl font-bold tracking-tight leading-tight animate-fade-in-up">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight animate-fade-in-up">
           I solved AI hallucinations.
         </h1>
         <p className="text-xl text-gray-300 leading-relaxed animate-fade-in-up">
@@ -1506,7 +1506,7 @@ Ryan Jordan | AI Engineer & Architect
           </div>
         </div>
       </div>
-      <div className="absolute bottom-4 left-4 z-20 flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3 mt-2 md:absolute md:bottom-4 md:left-4 md:mt-0 z-20">
         <a
           href="https://github.com/ryanjordan11"
           target="_blank"
@@ -1548,7 +1548,7 @@ Ryan Jordan | AI Engineer & Architect
         alt="Ryan Jordan"
         width={800}
         height={1000}
-        className="relative z-10 absolute right-[-5%] bottom-[-15%] max-w-3/4 object-contain"
+        className="relative z-10 object-contain max-w-[80vw] mx-auto mb-4 md:absolute md:right-[-5%] md:bottom-[-15%] md:max-w-3/4 md:mx-0 md:mb-0"
       />
     </div>
   );

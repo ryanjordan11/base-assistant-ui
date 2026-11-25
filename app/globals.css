@@ -306,3 +306,41 @@
     animation: none;
   }
 }
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  html {
+    touch-action: manipulation;
+  }
+
+  body {
+    overscroll-behavior: none;
+  }
+
+  /* Prevent decorative images from overflowing on small screens */
+  .home-image-mobile {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 40vh !important;
+    margin-top: 1rem !important;
+    object-fit: contain !important;
+  }
+
+  /* Composer touch targets on mobile */
+  .aui-composer-input {
+    min-height: 44px;
+  }
+
+  /* Thread viewport padding tighter on mobile */
+  .aui-thread-root .aui-thread-viewport {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  /* Prevent horizontal overflow */
+  * {
+    max-width: 100vw;
+  }
+}
