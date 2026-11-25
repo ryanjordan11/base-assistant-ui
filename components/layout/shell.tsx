@@ -179,7 +179,7 @@ const Sidebar: FC<{ collapsed: boolean; pathname: string }> = ({
       ) : (
         <div className="relative w-65 flex-1 overflow-y-auto p-3">
           <div className="flex flex-col gap-2.5 mb-2">
-            <Link href="/" className={cn("block", isActive("/") && "")}>
+            <Link href="/">
               <Button
                 variant="ghost"
                 className={cn(
