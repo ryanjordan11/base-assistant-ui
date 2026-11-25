@@ -1,16 +1,34 @@
-import { DemoRuntimeProvider } from "@/components/runtime/demo-runtime-provider";
-import { Base } from "@/components/examples/base";
-import { BaseConfigProvider } from "@/lib/base/config-provider";
-import { defaultBaseConfig } from "@/lib/base/defaults";
+"use client";
 
-export default function Page() {
+import { useState, useEffect } from "react";
+import { PageShell } from "@/components/layout/shell";
+import { SystemsIntro, HomeView } from "@/components/examples/base";
+
+const INTRO_DURATION = 2600;
+
+export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const alreadySeen = window.sessionStorage.getItem("app-intro-seen");
+
+    if (prefersReducedMotion || alreadySeen) {
+      setIsLoading(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => setIsLoading(false), INTRO_DURATION);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <SystemsIntro onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
-    <main className="h-dvh overflow-hidden">
-      <BaseConfigProvider value={defaultBaseConfig}>
-        <DemoRuntimeProvider>
-          <Base />
-        </DemoRuntimeProvider>
-      </BaseConfigProvider>
-    </main>
+    <PageShell>
+      <HomeView />
+    </PageShell>
   );
 }

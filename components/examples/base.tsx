@@ -91,6 +91,7 @@ import {
   type DirectiveChipProps,
 } from "@assistant-ui/react-lexical";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useRef, type FC, type ReactNode } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModelSelector } from "@/components/assistant-ui/model-selector";
@@ -100,7 +101,7 @@ import GlassFolder, { FolderFileCard, type FolderFile } from "@/components/proje
 
 const INTRO_DURATION = 2600;
 
-const SystemsIntro: FC<{ onComplete: () => void }> = ({ onComplete }) => {
+export const SystemsIntro: FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -511,7 +512,7 @@ const isNewChatView = (s: AssistantState) =>
   s.thread.messages.length === 0 &&
   (!s.thread.isLoading || s.threads.isLoading);
 
-const Thread: FC = () => {
+export const Thread: FC = () => {
   const isEmpty = useAuiState(isNewChatView);
 
   return (
@@ -799,7 +800,7 @@ const renderInline = (text: string) =>
     ),
   );
 
-const AboutView: FC = () => {
+export const AboutView: FC = () => {
   const stats = [
     { value: "4.3M+", label: "verbatim characters" },
     { value: "10,000", label: "cumulative tests" },
@@ -999,7 +1000,7 @@ const AboutView: FC = () => {
   );
 };
 
-const ProjectsView: FC = () => {
+export const ProjectsView: FC = () => {
   const projectsRef = useRef<HTMLElement>(null);
   const [selectedVideo, setSelectedVideo] = useState<FolderFile | null>(null);
   const [selectedApp, setSelectedApp] = useState<FolderFile | null>(null);
@@ -1356,11 +1357,11 @@ const ProjectsView: FC = () => {
   );
 };
 
-const ContactView: FC = () => {
+export const ContactView: FC = () => {
   return <div className="flex h-full items-center justify-center bg-[#1c1c1c]">Contact</div>;
 };
 
-const HomeView: FC<{ onProjects: () => void; onResume: () => void }> = ({ onProjects, onResume }) => {
+export const HomeView: FC = () => {
   const targets = { commits: 21000, apps: 174, repos: 270, prototypes: 1800, tokens: 7.7 };
   const startingValues = { commits: 17220, apps: 143, repos: 221, prototypes: 1476, tokens: 6.3 };
   const [stats, setStats] = useState(startingValues);
@@ -1521,12 +1522,16 @@ Ryan Jordan | AI Engineer & Architect
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-3 mt-2 md:absolute md:bottom-4 md:left-4 md:mt-0 z-20">
-        <Button size="sm" onClick={onProjects} className="h-8 bg-white/10 px-3 text-xs text-white hover:bg-white/20">
-          Explore my work
-        </Button>
-        <Button size="sm" variant="outline" onClick={onResume} className="h-8 border-white/25 bg-black/25 px-3 text-xs text-white hover:bg-white/10">
-          Resume
-        </Button>
+        <Link href="/projects">
+          <Button size="sm" className="h-8 bg-white/10 px-3 text-xs text-white hover:bg-white/20">
+            Explore my work
+          </Button>
+        </Link>
+        <Link href="/resume">
+          <Button size="sm" variant="outline" className="h-8 border-white/25 bg-black/25 px-3 text-xs text-white hover:bg-white/10">
+            Resume
+          </Button>
+        </Link>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-l border-white/20 pl-3 text-[10px] uppercase tracking-[0.12em] text-white/60">
           <span><strong className="text-sm font-semibold text-white">{stats.commits.toLocaleString()}</strong> commits</span>
           <span><strong className="text-sm font-semibold text-white">{stats.apps}</strong> apps shipped · 2026</span>
@@ -1546,7 +1551,7 @@ Ryan Jordan | AI Engineer & Architect
   );
 };
 
-const ResumeView: FC = () => {
+export const ResumeView: FC = () => {
   return (
     <div className="flex h-full flex-col items-center justify-center bg-[#1c1c1c] text-foreground p-6 md:p-10">
       <div className="w-full max-w-3xl flex-1 overflow-y-auto">
@@ -1739,7 +1744,7 @@ const ResumeView: FC = () => {
   );
 };
 
-const ProofView: FC = () => {
+export const ProofView: FC = () => {
   const proofVideos = [
     { title: "Proof · Deterministic verification", url: "https://youtu.be/fN0sWihmnnc" },
     { title: "Proof · Evidence across models", url: "https://youtu.be/TAFEaUj5fwc" },
@@ -2388,7 +2393,7 @@ export const Base: FC = () => {
                 activeView={activeView}
               />
               <main className="flex-1 overflow-hidden">
-                {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView onProjects={() => setActiveView("projects")} onResume={() => setActiveView("resume")} /> : <Thread />}
+                {activeView === "about" ? <AboutView /> : activeView === "projects" ? <ProjectsView /> : activeView === "resume" ? <ResumeView /> : activeView === "proof" ? <ProofView /> : activeView === "contact" ? <ContactView /> : activeView === "home" ? <HomeView /> : <Thread />}
               </main>
             </div>
           </div>
