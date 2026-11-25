@@ -138,7 +138,7 @@ const ThreadListItem: FC = () => {
   const { assistant } = useBaseConfig();
 
   return (
-    <ThreadListItemPrimitive.Root className="aui-thread-list-item group hover:bg-primary/10 focus-visible:bg-primary/10 data-active:bg-primary/15 flex h-8 items-center gap-1 rounded-md transition-colors focus-visible:outline-none">
+    <ThreadListItemPrimitive.Root className="aui-thread-list-item group hover:bg-primary/10 focus-visible:bg-primary/10 data-active:bg-primary/15 flex h-8 mt-0.5 items-center gap-1 rounded-md transition-colors focus-visible:outline-none">
       <ThreadListItemPrimitive.Trigger className="aui-thread-list-item-trigger flex h-full min-w-0 flex-1 items-center px-2.5 text-start text-sm">
         <span className="aui-thread-list-item-title min-w-0 flex-1 truncate">
           <ThreadListItemPrimitive.Title fallback={assistant.labels.newChat} />
