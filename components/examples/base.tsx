@@ -477,7 +477,7 @@ const Header: FC<{
       </TooltipIconButton>
        {activeView === "about" ? <span className="text-sm font-medium">About</span> : activeView === "projects" ? <span className="text-sm font-medium">Projects</span> : activeView === "resume" ? <span className="text-sm font-medium">Resume</span> : activeView === "proof" ? <span className="text-sm font-medium">Proof</span> : activeView === "contact" ? <span className="text-sm font-medium">Contact</span> : activeView === "home" ? <span className="text-sm font-medium">Home</span> : <ThreadTitle />}
 
-      <div className="flex items-center gap-2">
+      <div className="ml-auto flex items-center gap-2">
         <a
           href="https://github.com/ryanjordan11"
           target="_blank"
