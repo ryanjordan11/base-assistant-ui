@@ -588,7 +588,7 @@ const aboutSections: AboutSection[] = [
       { text: "Built **Ubiquitous**, a working AI system that externalizes memory, authority, permissions, evidence, retrieval, and execution outside the language model." },
       { text: "Built persistent external memory and cross-conversation retrieval so the model is not responsible for remembering its own source of truth." },
       { text: "Built exact, verbatim retrieval systems that return stored information character-for-character." },
-      { text: "Reached a documented result of **more than 4.3 million characters reproduced verbatim**, deterministically checked, SHA-verified, independently tested, and reproducible." },
+      { text: "Reached a documented result of **more than 9.1 million characters reproduced verbatim**, deterministically checked, SHA-verified, independently tested, and reproducible." },
       { text: "Completed a documented **221,718-character perfect-score test** across six test sets." },
       { text: "Completed **10,000 cumulative tests**, including independent evaluations, with perfect recorded results under the defined test conditions." },
       { text: "Recorded **0% hallucinations across more than 1,020 verified tests** under the defined test conditions." },
@@ -789,7 +789,7 @@ const aboutBodyOfWork = [
 ];
 
 const aboutSummary =
-  "**Ryan Jordan is an AI engineer, systems architect, and founder who began deploying practical AI systems in 2023 and went on to build AI operating systems, hands-free voice systems, Daytona-powered multi-agent environments, provider infrastructure, deterministic benchmarks, external-memory architecture, and more than 174 production applications. His Ubiquitous system has produced documented zero-hallucination results under defined test conditions, more than 4.3 million deterministically checked verbatim characters, 10,000 cumulative tests, and 180/180 adversarial access-control results.**";
+  "**Ryan Jordan is an AI engineer, systems architect, and founder who began deploying practical AI systems in 2023 and went on to build AI operating systems, hands-free voice systems, Daytona-powered multi-agent environments, provider infrastructure, deterministic benchmarks, external-memory architecture, and more than 174 production applications. His Ubiquitous system has produced documented zero-hallucination results under defined test conditions, more than 9.1 million deterministically checked verbatim characters, 10,000 cumulative tests, and 180/180 adversarial access-control results.**";
 
 const renderInline = (text: string) =>
   text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
@@ -802,7 +802,7 @@ const renderInline = (text: string) =>
 
 export const AboutView: FC = () => {
   const stats = [
-    { value: "4.3M+", label: "verbatim characters" },
+    { value: "9.1M+", label: "verbatim characters" },
     { value: "10,000", label: "cumulative tests" },
     { value: "0%", label: "hallucinations · 1,020+" },
     { value: "180/180", label: "access control" },
@@ -1551,194 +1551,310 @@ Ryan Jordan | AI Engineer & Architect
   );
 };
 
+type ResumeSection = {
+  heading: string;
+  lead?: string;
+  items: { text: string; sub?: string[] }[];
+};
+
+const resumeSections: ResumeSection[] = [
+  {
+    heading: "Highlights",
+    items: [
+      { text: "10,000 verbatim recalls, every one an exact match, SHA-256 verified, no AI judges" },
+      { text: "2.4 billion Facebook views in one month, 5 billion+ in a year, across groups with 20 million members" },
+      { text: "7.7 billion tokens processed this year for under $100" },
+      { text: "2,000 builds in 2026, including 170+ apps" },
+      { text: "1,000+ clients in MetaMasters with a 1-million-views-in-24-hours guarantee and zero refunds" },
+      { text: "180 of 180 on a live access-control test; ranked number two in the world among AI innovators on Facebook" },
+      { text: "18 months of hands-on testing of the major AI models, 350 repos built, and 7.7 billion tokens used this year" },
+    ],
+  },
+  {
+    heading: "Summary",
+    items: [
+      { text: "AI engineer and founder who built and is running a world-record attempt in verbatim AI recall: 10,000 rows tested, every one an exact match. Created The Rock, a deterministic benchmark using exact-byte comparison and SHA-256 hashing with no AI judges, and Ubiquitous, a multi-model AI workspace taken from idea to live users as the only builder. Shipped 170+ apps and 1,500+ prototypes in 2026, processing 7.7 billion tokens this year for under $100. Built a deterministic benchmark that catches what AI judges miss, with exact-match results across the model catalogs of Z.AI, Anthropic, Qwen, OpenAI, and Google. Seeking an AI engineer, architect, or evaluation and safety role where proving AI reliability is the job." },
+    ],
+  },
+  {
+    heading: "Core Skills",
+    items: [
+      { text: "Solution and systems architecture for AI-powered products" },
+      { text: "Multi-model orchestration across every major provider (OpenAI, Anthropic, Google, Qwen, Z.AI and more)" },
+      { text: "Deterministic validation and benchmarking (SHA-256 verbatim verification, adversarial access-control testing)" },
+      { text: "Cloud deployment on Azure; sandboxed execution with Daytona" },
+      { text: "Integration platforms: Composio (1,600+ connectable apps), OpenAlex, Context7" },
+      { text: "Cost and performance optimization (high cache-hit architectures, sub-cent per-call cost)" },
+      { text: "Technical leadership, product strategy, and rapid prototyping" },
+    ],
+  },
+  {
+    heading: "Experience",
+    items: [
+      {
+        text: "**Founder and Lead Architect, Ubiquitous** \u00b7 2025 to present",
+        sub: [
+          "Multi-chat AI workspace with full user control over prompt, payload, and message history.",
+          "Designed, built, and shipped the full platform solo: architecture, backend, front end, testing, pricing, and launch",
+          "Built dual-chat and parallel-chat workflows where one chat drives a live artifact while another works a separate task, with every model provider swappable mid-conversation",
+          "Gave users complete control of prompt, payload, and message history, with rules enforced in code outside the model so results stay predictable and auditable",
+          "Connected 1,600+ third-party apps through Composio, plus research and documentation knowledge bases, voice-to-voice, automations, and sandboxed code execution",
+          "Proved access control holds under attack: 180 of 180 on a live adversarial test across fictional patient and doctor records, and 9 of 9 on a separate adversarial report",
+          "Ran 12.2K live requests (357.4M tokens) for $45.88 at a 94.1% cache hit rate; median response of about one second at roughly $0.000132 per call",
+          "Won real users, with recorded demos of their reactions, and set pricing and launch strategy for the product",
+          "Ran a recorded, unedited side-by-side test of Ubiquitous against Claude and Gemini, with a fresh chat for every question and identical wording: Ubiquitous kept the record across chats while Claude and Gemini started blank (full video on YouTube)",
+          "Designed and ran 12 recorded tests on Claude, which failed all twelve",
+        ],
+      },
+      {
+        text: "**Creator, The Rock Benchmark** \u00b7 2026",
+        sub: [
+          "Built and is running a world-record attempt in deterministic AI verification: exact-byte comparison and SHA-256 hashing, no AI in the loop.",
+          "Ran 10,000 verbatim rows with every result an exact match and matching hashes",
+          "Verified recall across five provider model catalogs (Z.AI, Anthropic, Qwen, OpenAI, Google), 440 rows, zero diffs",
+          "Open-sourced the tool, tests, and methodology, recruited independent testers to run it, and published a video and public call to help set the record",
+          "Cut token cost 99.49% by replacing AI judging with deterministic checks",
+        ],
+      },
+      {
+        text: "**Creator, Continuum (formerly OneHub Panels)**",
+        sub: [
+          "Designed and built an agentic workspace where every app and AI runs live side by side as full browser panes on an infinite canvas, with a context-aware, screen-aware AI agent that sees what is open across the panes and can control the browsers. Free-form tiling in any number and shape, an infinite horizontal slider view, numbered panes, and tabs that drag and drop anywhere. Bundles all 170+ of my apps and ships with free AI. Launched with an early-adopter offer of unlimited free AI for life for the first 10 users.",
+        ],
+      },
+      {
+        text: "**Creator, Command OS (onecommand.dev)**",
+        sub: [
+          "Multi-model architecture targeting context drift, hallucination, and memory decay. Benchmarked against a structured-decision model on 10 questions: 8 wins, 2 ties, 0 losses.",
+        ],
+      },
+      {
+        text: "**Creator, OneHub.Design**",
+        sub: ["All-in-one AI platform, including product marketing and content."],
+      },
+      {
+        text: "**Founder, 000 Labs**",
+        sub: [
+          "Launched my own AI provider (000labs.xyz) to serve models directly instead of depending on the big labs.",
+        ],
+      },
+      {
+        text: "**Builder, Echo, Buyer Radar, and Screen-Aware Voice Assistant**",
+        sub: [
+          "Echo and Buyer Radar (a Facebook-focused app), part of a portfolio of 170+ apps, with one now built into Ubiquitous",
+          "Multi-screen sharing app that lets you watch all of your screens at once",
+          "Voice-to-voice assistant that watches your computer screen, always knows what is going on, and talks to you in real time",
+        ],
+      },
+      {
+        text: "**Creator, Facebook Content Systems**",
+        sub: [
+          "Built content systems that generated 2.4 billion views on Facebook in a single month and over 5 billion in a year, across Facebook groups with 20 million members",
+          "Ranked number two in the world among AI innovators on Facebook by Austin Armstrong",
+          "Featured by Facebook as a global game changer for turning vision into a vibe",
+        ],
+      },
+      {
+        text: "**Founder, MetaMasters: Zero to Everywhere**",
+        sub: [
+          "Ran a growth program for 1,000+ clients with a guarantee of 1 million views in 24 hours or your money back",
+          "Honored the guarantee with zero refunds issued",
+          "Every Student reached 1 Million views in 24 hours or less",
+        ],
+      },
+      {
+        text: "**Creator, Multi-Agent Orchestration Platform**",
+        sub: [
+          "Built a visual front end for agent orchestration: one click spawns hundreds of agents at once that communicate with each other",
+          "Supports deterministic agents, multiple servers, and Daytona sandboxes",
+        ],
+      },
+      {
+        text: "**White-Label Offers**",
+        sub: [
+          "App pack: about 50 of my apps, built and delivered white-label for the buyer, at $149",
+          "000 Labs white label: a clone of my AI provider platform, built and branded for the client",
+        ],
+      },
+    ],
+  },
+  {
+    heading: "Work History",
+    items: [
+      { text: "**Software Engineer and Web Developer** \u2014 20 years of software engineering and web development, including 500+ custom builds over the years and 2,000 builds in 2026 alone." },
+      { text: "**Cannabuds Thailand** \u2014 Set up automated ordering AI systems, 2022 to 2024." },
+      { text: "**Family Contracting Business** \u2014 Managed the family contracting business." },
+    ],
+  },
+  {
+    heading: "Tools",
+    items: [
+      { text: "JetBrains IDEs, Pycharm, Webstorm, Intelijideaopencode CLI, Azure, Daytona SDK, Composio, Mac and Windows environments" },
+    ],
+  },
+];
+
 export const ResumeView: FC = () => {
+  const stats = [
+    { value: "10,000", label: "verbatim exact matches" },
+    { value: "180/180", label: "access control" },
+    { value: "170+", label: "production apps" },
+    { value: "7.7B", label: "tokens / year" },
+    { value: "2.4B", label: "views / month" },
+    { value: "5B+", label: "views / year" },
+    { value: "1,000+", label: "clients served" },
+    { value: "350", label: "repos built" },
+  ];
+
+  const fade = (delay: number) => ({
+    animationDelay: `${delay}ms`,
+    animationFillMode: "both" as const,
+  });
+
   return (
-    <div className="flex h-full flex-col items-center justify-center bg-[#1c1c1c] text-foreground p-6 md:p-10">
-      <div className="w-full max-w-3xl flex-1 overflow-y-auto">
-        <header className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight">Ryan Jordan</h1>
-          <p className="text-primary text-lg font-medium mt-1">
+    <div className="h-full overflow-y-auto bg-[#09090b] text-white">
+      <header className="relative overflow-hidden border-b border-white/10">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(70,70,80,0.30),transparent_55%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage: "radial-gradient(circle at top, black, transparent 72%)",
+            WebkitMaskImage: "radial-gradient(circle at top, black, transparent 72%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-5xl px-6 py-16 text-center md:py-20">
+          <div
+            className="animate-fade-in-up mb-6 flex items-center justify-center gap-3 font-mono text-[10px] uppercase tracking-[0.45em] text-white/40"
+            style={fade(0)}
+          >
+            <span className="size-1 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
+            R&eacute;sum&eacute;
+            <span className="size-1 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
+          </div>
+          <h1
+            className="animate-fade-in-up text-4xl font-bold tracking-tight md:text-6xl"
+            style={fade(80)}
+          >
+            Ryan Jordan&rsquo;s{" "}
+            <span className="bg-gradient-to-b from-white to-white/45 bg-clip-text text-transparent">
+              R&eacute;sum&eacute;
+            </span>
+          </h1>
+          <p
+            className="animate-fade-in-up mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/50 md:text-base"
+            style={fade(160)}
+          >
             AI Engineer and Architect | AI Evaluation, Safety, and Hallucination Testing
           </p>
-          <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+          <p
+            className="animate-fade-in-up mx-auto mt-2 max-w-2xl text-xs uppercase tracking-[0.2em] text-white/35"
+            style={fade(200)}
+          >
             10,000 Verbatim Exact Matches &nbsp;|&nbsp; Punta Cana, Dominican Republic &nbsp;|&nbsp; Canadian citizen
           </p>
-        </header>
+        </div>
+      </header>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Highlights</h2>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed">
-            <li>10,000 verbatim recalls, every one an exact match, SHA-256 verified, no AI judges</li>
-            <li>2.4 billion Facebook views in one month, 5 billion+ in a year, across groups with 20 million members</li>
-            <li>7.7 billion tokens processed this year for under $100</li>
-            <li>2,000 builds in 2026, including 170+ apps</li>
-            <li>1,000+ clients in MetaMasters with a 1-million-views-in-24-hours guarantee and zero refunds</li>
-            <li>180 of 180 on a live access-control test; ranked number two in the world among AI innovators on Facebook</li>
-            <li>18 months of hands-on testing of the major AI models, 350 repos built, and 7.7 billion tokens used this year</li>
-          </ul>
-        </section>
+      <div className="mx-auto max-w-5xl px-6 py-12 md:py-14">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-4">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="animate-fade-in-up rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm transition-colors hover:border-white/25 hover:bg-white/[0.06]"
+              style={fade(240 + i * 55)}
+            >
+              <p className="font-mono text-2xl font-semibold tracking-tight md:text-3xl">
+                {stat.value}
+              </p>
+              <p className="mt-1.5 text-[10px] uppercase tracking-[0.12em] text-white/40">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Summary</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            AI engineer and founder who built and is running a world-record attempt in verbatim AI recall: 10,000 rows tested, every one an exact match. Created The Rock, a deterministic benchmark using exact-byte comparison and SHA-256 hashing with no AI judges, and Ubiquitous, a multi-model AI workspace taken from idea to live users as the only builder. Shipped 170+ apps and 1,500+ prototypes in 2026, processing 7.7 billion tokens this year for under $100. Built a deterministic benchmark that catches what AI judges miss, with exact-match results across the model catalogs of Z.AI, Anthropic, Qwen, OpenAI, and Google. Seeking an AI engineer, architect, or evaluation and safety role where proving AI reliability is the job.
-          </p>
-        </section>
+      <div className="mx-auto max-w-5xl px-6 pb-20">
+        <div className="flex flex-col gap-4">
+          {resumeSections.map((section, index) => (
+            <section
+              key={section.heading}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.04] md:p-8"
+            >
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="mb-5 flex items-baseline gap-3">
+                <span className="font-mono text-xs text-primary/70">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h2 className="text-xl font-semibold tracking-tight md:text-2xl">
+                  {section.heading}
+                </h2>
+              </div>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Core Skills</h2>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed">
-            <li>Solution and systems architecture for AI-powered products</li>
-            <li>Multi-model orchestration across every major provider (OpenAI, Anthropic, Google, Qwen, Z.AI and more)</li>
-            <li>Deterministic validation and benchmarking (SHA-256 verbatim verification, adversarial access-control testing)</li>
-            <li>Cloud deployment on Azure; sandboxed execution with Daytona</li>
-            <li>Integration platforms: Composio (1,600+ connectable apps), OpenAlex, Context7</li>
-            <li>Cost and performance optimization (high cache-hit architectures, sub-cent per-call cost)</li>
-            <li>Technical leadership, product strategy, and rapid prototyping</li>
-          </ul>
-        </section>
+              {section.lead && (
+                <p className="mb-3 text-sm font-medium text-white/80">{section.lead}</p>
+              )}
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Experience</h2>
+              <ul className="space-y-2.5 text-sm leading-relaxed text-white/60 [&_strong]:font-semibold [&_strong]:text-white">
+                {section.items.map((item, i) => (
+                  <li key={i} className="relative pl-5">
+                    <span
+                      className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60"
+                      aria-hidden="true"
+                    />
+                    {renderInline(item.text)}
+                    {item.sub && (
+                      <ul className="mt-2 space-y-1.5 border-l border-white/10 pl-4">
+                        {item.sub.map((sub, j) => (
+                          <li key={j} className="relative pl-4 text-white/45">
+                            <span
+                              className="absolute left-0 top-[0.6em] size-1 rounded-full bg-white/25"
+                              aria-hidden="true"
+                            />
+                            {renderInline(sub)}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
 
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Founder and Lead Architect, Ubiquitous</h3>
-            <p className="text-sm text-muted-foreground">2025 to present</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Multi-chat AI workspace with full user control over prompt, payload, and message history.
-            </p>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>Designed, built, and shipped the full platform solo: architecture, backend, front end, testing, pricing, and launch</li>
-              <li>Built dual-chat and parallel-chat workflows where one chat drives a live artifact while another works a separate task, with every model provider swappable mid-conversation</li>
-              <li>Gave users complete control of prompt, payload, and message history, with rules enforced in code outside the model so results stay predictable and auditable</li>
-              <li>Connected 1,600+ third-party apps through Composio, plus research and documentation knowledge bases, voice-to-voice, automations, and sandboxed code execution</li>
-              <li>Proved access control holds under attack: 180 of 180 on a live adversarial test across fictional patient and doctor records, and 9 of 9 on a separate adversarial report</li>
-              <li>Ran 12.2K live requests (357.4M tokens) for $45.88 at a 94.1% cache hit rate; median response of about one second at roughly $0.000132 per call</li>
-              <li>Won real users, with recorded demos of their reactions, and set pricing and launch strategy for the product</li>
-              <li>Ran a recorded, unedited side-by-side test of Ubiquitous against Claude and Gemini, with a fresh chat for every question and identical wording: Ubiquitous kept the record across chats while Claude and Gemini started blank (full video on YouTube)</li>
-              <li>Designed and ran 12 recorded tests on Claude, which failed all twelve</li>
+          <section className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.04] md:p-8">
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+              aria-hidden="true"
+            />
+            <div className="mb-5 flex items-baseline gap-3">
+              <span className="font-mono text-xs text-primary/70">
+                {String(resumeSections.length + 1).padStart(2, "0")}
+              </span>
+              <h2 className="text-xl font-semibold tracking-tight md:text-2xl">Links</h2>
+            </div>
+            <ul className="space-y-2.5 text-sm leading-relaxed text-white/60">
+              <li className="relative pl-5">
+                <span className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60" aria-hidden="true" />
+                GitHub: <a href="https://github.com/ryanjordan11/the-rock-benchmark" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">github.com/ryanjordan11/the-rock-benchmark</a>
+              </li>
+              <li className="relative pl-5">
+                <span className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60" aria-hidden="true" />
+                YouTube: Ryan Jordan | Viral Engineer
+              </li>
+              <li className="relative pl-5">
+                <span className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-primary/60" aria-hidden="true" />
+                Multi-agent orchestration platform (live): <a href="https://dashboard-app-kappa-brown.vercel.app" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">dashboard-app-kappa-brown.vercel.app</a>
+              </li>
             </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Creator, The Rock Benchmark</h3>
-            <p className="text-sm text-muted-foreground">2026</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Built and is running a world-record attempt in deterministic AI verification: exact-byte comparison and SHA-256 hashing, no AI in the loop.
-            </p>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>Ran 10,000 verbatim rows with every result an exact match and matching hashes</li>
-              <li>Verified recall across five provider model catalogs (Z.AI, Anthropic, Qwen, OpenAI, Google), 440 rows, zero diffs</li>
-              <li>Open-sourced the tool, tests, and methodology, recruited independent testers to run it, and published a video and public call to help set the record</li>
-              <li>Cut token cost 99.49% by replacing AI judging with deterministic checks</li>
-            </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Creator, Continuum (formerly OneHub Panels)</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Designed and built an agentic workspace where every app and AI runs live side by side as full browser panes on an infinite canvas, with a context-aware, screen-aware AI agent that sees what is open across the panes and can control the browsers. Free-form tiling in any number and shape, an infinite horizontal slider view, numbered panes, and tabs that drag and drop anywhere. Bundles all 170+ of my apps and ships with free AI. Launched with an early-adopter offer of unlimited free AI for life for the first 10 users.
-            </p>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Creator, Command OS (onecommand.dev)</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Multi-model architecture targeting context drift, hallucination, and memory decay. Benchmarked against a structured-decision model on 10 questions: 8 wins, 2 ties, 0 losses.
-            </p>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Creator, OneHub.Design</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              All-in-one AI platform, including product marketing and content.
-            </p>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Founder, 000 Labs</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Launched my own AI provider (000labs.xyz) to serve models directly instead of depending on the big labs.
-            </p>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Builder, Echo, Buyer Radar, and Screen-Aware Voice Assistant</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>Echo and Buyer Radar (a Facebook-focused app), part of a portfolio of 170+ apps, with one now built into Ubiquitous</li>
-              <li>Multi-screen sharing app that lets you watch all of your screens at once</li>
-              <li>Voice-to-voice assistant that watches your computer screen, always knows what is going on, and talks to you in real time</li>
-            </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Creator, Facebook Content Systems</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>Built content systems that generated 2.4 billion views on Facebook in a single month and over 5 billion in a year, across Facebook groups with 20 million members</li>
-              <li>Ranked number two in the world among AI innovators on Facebook by Austin Armstrong</li>
-              <li>Featured by Facebook as a global game changer for turning vision into a vibe</li>
-            </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Founder, MetaMasters: Zero to Everywhere</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>Ran a growth program for 1,000+ clients with a guarantee of 1 million views in 24 hours or your money back</li>
-              <li>Honored the guarantee with zero refunds issued</li>
-              <li>Every Student reached 1 Million views in 24 hours or less</li>
-            </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">Creator, Multi-Agent Orchestration Platform</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>Built a visual front end for agent orchestration: one click spawns hundreds of agents at once that communicate with each other</li>
-              <li>Supports deterministic agents, multiple servers, and Daytona sandboxes</li>
-            </ul>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold">White-Label Offers</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed mt-2">
-              <li>App pack: about 50 of my apps, built and delivered white-label for the buyer, at $149</li>
-              <li>000 Labs white label: a clone of my AI provider platform, built and branded for the client</li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Work History</h2>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed">
-            <li>
-              <strong>Software Engineer and Web Developer</strong><br />
-              20 years of software engineering and web development, including 500+ custom builds over the years and 2,000 builds in 2026 alone.
-            </li>
-            <li>
-              <strong>Cannabuds Thailand</strong><br />
-              Set up automated ordering AI systems, 2022 to 2024.
-            </li>
-            <li>
-              <strong>Family Contracting Business</strong><br />
-              Managed the family contracting business.
-            </li>
-          </ul>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Tools</h2>
-          <p className="text-sm text-muted-foreground">
-            JetBrains IDEs, Pycharm, Webstorm, Intelijideaopencode CLI, Azure, Daytona SDK, Composio, Mac and Windows environments
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-3 border-b border-primary/30 pb-1">Links</h2>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground leading-relaxed">
-            <li>GitHub: <a href="https://github.com/ryanjordan11/the-rock-benchmark" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">github.com/ryanjordan11/the-rock-benchmark</a></li>
-            <li>YouTube: Ryan Jordan | Viral Engineer</li>
-            <li>Multi-agent orchestration platform (live): <a href="https://dashboard-app-kappa-brown.vercel.app" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">dashboard-app-kappa-brown.vercel.app</a></li>
-          </ul>
-        </section>
+          </section>
+        </div>
       </div>
     </div>
   );
