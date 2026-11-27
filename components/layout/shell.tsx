@@ -78,7 +78,7 @@ const Sidebar: FC<{ collapsed: boolean; pathname: string }> = ({
       <div
         className={cn(
           "mt-2 flex h-12 shrink-0 items-center transition-[padding] duration-200",
-          collapsed ? "px-3.5" : "px-5",
+          collapsed ? "px-4" : "px-5",
         )}
       >
         <RyanAvatar />
