@@ -72,13 +72,13 @@ const Sidebar: FC<{ collapsed: boolean; pathname: string }> = ({
     <aside
       className={cn(
         "flex h-full flex-col overflow-hidden bg-black duration-200 relative",
-        collapsed ? "w-12" : "w-65",
+        collapsed ? "w-12" : "w-52",
       )}
     >
       <div
         className={cn(
           "mt-2 flex h-12 shrink-0 items-center transition-[padding] duration-200",
-          collapsed ? "px-5" : "px-5",
+          collapsed ? "px-4.5" : "px-5",
         )}
       >
         <RyanAvatar />
@@ -177,7 +177,7 @@ const Sidebar: FC<{ collapsed: boolean; pathname: string }> = ({
           </Link>
         </>
       ) : (
-        <div className="relative w-65 flex-1 overflow-y-auto p-3">
+        <div className="relative w-52 flex-1 overflow-y-auto p-3">
           <div className="flex flex-col gap-2.5 mb-2">
             <Link href="/">
               <Button
