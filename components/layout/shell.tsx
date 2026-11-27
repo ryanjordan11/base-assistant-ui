@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, type FC } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+  type FC,
+  type ReactNode,
+} from "react";
 import Image from "next/image";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -383,6 +390,30 @@ const Header: FC<{
   );
 };
 
+const SidebarCollapsedContext = createContext<{
+  collapsed: boolean;
+  toggle: () => void;
+}>({ collapsed: true, toggle: () => {} });
+
+export function SidebarStateProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggle = useCallback(() => setCollapsed((c) => !c), []);
+
+  return (
+    <SidebarCollapsedContext.Provider value={{ collapsed, toggle }}>
+      {children}
+    </SidebarCollapsedContext.Provider>
+  );
+}
+
+function useSidebarState() {
+  return useContext(SidebarCollapsedContext);
+}
+
 function PageShell({
   children,
   sidebarCollapsed,
@@ -392,7 +423,8 @@ function PageShell({
   sidebarCollapsed?: boolean;
   onToggleSidebar?: () => void;
 }) {
-  const [collapsed, setCollapsed] = useState(true);
+  const state = useSidebarState();
+  const collapsed = sidebarCollapsed ?? state.collapsed;
   const pathname = usePathname();
 
   return (
@@ -405,7 +437,7 @@ function PageShell({
           <Header
             sidebarCollapsed={collapsed}
             onToggleSidebar={
-              onToggleSidebar ?? (() => setCollapsed(!collapsed))
+              onToggleSidebar ?? state.toggle
             }
             pathname={pathname}
           />
