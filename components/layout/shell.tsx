@@ -65,7 +65,7 @@ const Sidebar: FC<{ collapsed: boolean; pathname: string }> = ({
   pathname,
 }) => {
   const { assistant } = useBaseConfig();
-  const collapsedIconClass = "mt-2 ml-3 mr-1 size-8";
+  const collapsedIconClass = "mt-2 ml-4 mr-1 size-8";
   const isActive = (route: string) => pathname === route;
 
   return (
@@ -169,7 +169,7 @@ const Sidebar: FC<{ collapsed: boolean; pathname: string }> = ({
                 side="right"
                 variant="ghost"
                 size="icon"
-                className="mt-0 ml-3 mr-1 size-8"
+                className="mt-0 ml-4 mr-1 size-8"
               >
                 <PlusIcon className="size-4" />
               </TooltipIconButton>
